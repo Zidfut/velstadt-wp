@@ -1,0 +1,596 @@
+{
+    "key": "group_velstadt_header",
+    "title": "Header",
+    "fields": [
+        {
+            "key": "field_velstadt_header_logo",
+            "label": "Logo",
+            "name": "header_logo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_velstadt_header_navigation",
+            "label": "Navigation",
+            "name": "header_navigation",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add navigation item",
+            "collapsed": "field_velstadt_header_item_label",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_velstadt_header_item_label",
+                    "label": "Label",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_velstadt_header_navigation"
+                },
+                {
+                    "key": "field_velstadt_header_item_link",
+                    "label": "Link",
+                    "name": "link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "parent_repeater": "field_velstadt_header_navigation"
+                },
+                {
+                    "key": "field_velstadt_header_dropdown_type",
+                    "label": "Dropdown type",
+                    "name": "dropdown_type",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "none": "No dropdown",
+                        "standard": "Standard mega menu",
+                        "tabs": "Tabbed mega menu"
+                    },
+                    "default_value": "none",
+                    "ui": 1,
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value",
+                    "create_options": 0,
+                    "save_options": 0,
+                    "parent_repeater": "field_velstadt_header_navigation"
+                },
+                {
+                    "key": "field_velstadt_header_feature_type",
+                    "label": "Feature card type",
+                    "name": "feature_type",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "none": "None",
+                        "ranking": "Ranking",
+                        "recognition": "Recognition",
+                        "customer": "Customer story"
+                    },
+                    "default_value": "none",
+                    "ui": 1,
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value",
+                    "create_options": 0,
+                    "save_options": 0,
+                    "parent_repeater": "field_velstadt_header_navigation"
+                },
+                {
+                    "key": "field_velstadt_header_feature_image",
+                    "label": "Feature image",
+                    "name": "feature_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "thumbnail",
+                    "library": "all",
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": "",
+                    "parent_repeater": "field_velstadt_header_navigation"
+                },
+                {
+                    "key": "field_velstadt_header_feature_asset",
+                    "label": "Bundled image fallback",
+                    "name": "feature_asset",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "allow_null": 1,
+                    "choices": {
+                        "award-badge.svg": "Clutch #7",
+                        "awards\/g2-high-performer-2026-badge.svg": "G2 High Performer",
+                        "awards\/clutch-top-dark-web-2025-badge.svg": "Clutch Dark Web",
+                        "partners\/Nova-post.svg": "Nova Post"
+                    },
+                    "multiple": 0,
+                    "default_value": false,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value",
+                    "create_options": 0,
+                    "save_options": 0,
+                    "parent_repeater": "field_velstadt_header_navigation"
+                },
+                {
+                    "key": "field_velstadt_header_feature_eyebrow",
+                    "label": "Feature eyebrow",
+                    "name": "feature_eyebrow",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_velstadt_header_navigation"
+                },
+                {
+                    "key": "field_velstadt_header_feature_number",
+                    "label": "Feature number",
+                    "name": "feature_number",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_velstadt_header_navigation"
+                },
+                {
+                    "key": "field_velstadt_header_feature_title",
+                    "label": "Feature title",
+                    "name": "feature_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_velstadt_header_navigation"
+                },
+                {
+                    "key": "field_velstadt_header_feature_meta",
+                    "label": "Feature meta",
+                    "name": "feature_meta",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_velstadt_header_navigation"
+                },
+                {
+                    "key": "field_velstadt_header_feature_quote",
+                    "label": "Customer quote",
+                    "name": "feature_quote",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "parent_repeater": "field_velstadt_header_navigation"
+                },
+                {
+                    "key": "field_velstadt_header_feature_stat",
+                    "label": "Customer stat",
+                    "name": "feature_stat",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_velstadt_header_navigation"
+                },
+                {
+                    "key": "field_velstadt_header_feature_stat_label",
+                    "label": "Customer stat label",
+                    "name": "feature_stat_label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_velstadt_header_navigation"
+                },
+                {
+                    "key": "field_velstadt_header_feature_link",
+                    "label": "Feature link",
+                    "name": "feature_link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "parent_repeater": "field_velstadt_header_navigation"
+                },
+                {
+                    "key": "field_velstadt_header_panels",
+                    "label": "Dropdown panels",
+                    "name": "panels",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "button_label": "Add panel",
+                    "collapsed": "field_velstadt_header_panel_label",
+                    "min": 0,
+                    "max": 0,
+                    "rows_per_page": 20,
+                    "parent_repeater": "field_velstadt_header_navigation",
+                    "sub_fields": [
+                        {
+                            "key": "field_velstadt_header_panel_label",
+                            "label": "Tab label",
+                            "name": "tab_label",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_velstadt_header_panels"
+                        },
+                        {
+                            "key": "field_velstadt_header_columns",
+                            "label": "Columns",
+                            "name": "columns",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "button_label": "Add column",
+                            "collapsed": "field_velstadt_header_column_title",
+                            "min": 0,
+                            "max": 0,
+                            "rows_per_page": 20,
+                            "parent_repeater": "field_velstadt_header_panels",
+                            "sub_fields": [
+                                {
+                                    "key": "field_velstadt_header_column_title",
+                                    "label": "Column title",
+                                    "name": "title",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": false,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_velstadt_header_columns"
+                                },
+                                {
+                                    "key": "field_velstadt_header_column_links",
+                                    "label": "Links",
+                                    "name": "links",
+                                    "aria-label": "",
+                                    "type": "repeater",
+                                    "instructions": "",
+                                    "required": false,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "layout": "row",
+                                    "button_label": "Add link",
+                                    "collapsed": "field_velstadt_header_column_link",
+                                    "min": 0,
+                                    "max": 0,
+                                    "rows_per_page": 20,
+                                    "parent_repeater": "field_velstadt_header_columns",
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_velstadt_header_column_link",
+                                            "label": "Link",
+                                            "name": "link",
+                                            "aria-label": "",
+                                            "type": "link",
+                                            "instructions": "",
+                                            "required": 1,
+                                            "conditional_logic": false,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "return_format": "array",
+                                            "parent_repeater": "field_velstadt_header_column_links"
+                                        },
+                                        {
+                                            "key": "field_velstadt_header_column_description",
+                                            "label": "Description",
+                                            "name": "description",
+                                            "aria-label": "",
+                                            "type": "textarea",
+                                            "instructions": "",
+                                            "required": false,
+                                            "conditional_logic": false,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "rows": 2,
+                                            "new_lines": "",
+                                            "default_value": "",
+                                            "maxlength": "",
+                                            "placeholder": "",
+                                            "parent_repeater": "field_velstadt_header_column_links"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_velstadt_header_incident_link",
+            "label": "Active incident link",
+            "name": "header_incident_link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_velstadt_header_sign_in_link",
+            "label": "Sign in link",
+            "name": "header_sign_in_link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_velstadt_header_demo_link",
+            "label": "Request a demo link",
+            "name": "header_demo_link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "options"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "",
+    "show_in_rest": false,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1794691310
+}

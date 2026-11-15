@@ -1,0 +1,128 @@
+{
+    "key": "group_velstadt_award_details",
+    "title": "Award Details",
+    "fields": [
+        {
+            "key": "field_velstadt_award_year",
+            "label": "Year",
+            "name": "award_year",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": 2000,
+            "max": 2100,
+            "default_value": "",
+            "step": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_velstadt_award_ranking_position",
+            "label": "Ranking position on Home",
+            "name": "award_ranking_position",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Optional. Used only in the Awards section on the Home page. Enter 2 to display №2.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": 1,
+            "max": "",
+            "default_value": "",
+            "step": 1,
+            "placeholder": "2",
+            "prepend": "№",
+            "append": ""
+        },
+        {
+            "key": "field_velstadt_award_details",
+            "label": "Ranking details",
+            "name": "award_details",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_velstadt_award_external_link",
+            "label": "External link",
+            "name": "award_external_link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_velstadt_award_badge_asset",
+            "label": "Bundled badge fallback",
+            "name": "award_badge_asset",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Used only when Featured Image is empty.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "award"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "",
+    "show_in_rest": false,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1794699154
+}

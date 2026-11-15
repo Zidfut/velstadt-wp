@@ -1,0 +1,45 @@
+{
+    "key": "group_velstadt_blog_page",
+    "title": "Blog Page",
+    "fields": [
+        { "key": "field_velstadt_blog_hero_tab", "label": "Hero", "name": "", "type": "tab", "placement": "top", "endpoint": 0 },
+        { "key": "field_velstadt_blog_hero_show", "label": "Show section", "name": "blog_hero_show", "type": "true_false", "ui": 1, "default_value": 1 },
+        { "key": "field_velstadt_blog_hero_subtitle", "label": "Eyebrow", "name": "blog_hero_subtitle", "type": "text", "default_value": "" },
+        { "key": "field_velstadt_blog_hero_title", "label": "Title", "name": "blog_hero_title", "type": "text", "default_value": "" },
+        { "key": "field_velstadt_blog_hero_description", "label": "Description", "name": "blog_hero_description", "type": "textarea", "rows": 4, "new_lines": "", "default_value": "" },
+        { "key": "field_velstadt_blog_hero_note", "label": "Right-side note", "name": "blog_hero_note", "type": "text", "default_value": "" },
+
+        { "key": "field_velstadt_blog_content_tab", "label": "Blog content", "name": "", "type": "tab", "placement": "top", "endpoint": 0 },
+        {
+            "key": "field_velstadt_blog_featured_post",
+            "label": "Featured post",
+            "name": "blog_featured_post",
+            "type": "post_object",
+            "instructions": "Displayed as the large card above the category filters.",
+            "post_type": ["post"],
+            "return_format": "id",
+            "allow_null": 1,
+            "taxonomy": [],
+            "multiple": 0,
+            "ui": 1,
+            "bidirectional_target": []
+        },
+        { "key": "field_velstadt_blog_posts_per_page", "label": "Posts per page", "name": "blog_posts_per_page", "type": "number", "default_value": 6, "min": 1, "max": 24, "step": 1 },
+        { "key": "field_velstadt_blog_show_resources", "label": "Show Reports and Research", "name": "blog_show_resources", "type": "true_false", "ui": 1, "default_value": 1 },
+        { "key": "field_velstadt_blog_show_subscribe", "label": "Show Subscribe section", "name": "blog_show_subscribe", "type": "true_false", "ui": 1, "default_value": 1 }
+    ],
+    "location": [[{ "param": "page_type", "operator": "==", "value": "posts_page" }]],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "Editable settings for the page selected as the WordPress Posts page.",
+    "show_in_rest": false,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1794700069
+}

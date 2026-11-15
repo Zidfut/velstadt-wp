@@ -4,11 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
 	const headerMenu = document.querySelector('.header__nav-wrap');
 	const body = document.querySelector('body');
 
-	menuBtn.addEventListener('click', () => {
-		menuBtn.classList.toggle('active');
-		headerMenu.classList.toggle('active');
-		body.classList.toggle('no-scroll');
-	})
+	if (menuBtn && headerMenu) {
+		menuBtn.addEventListener('click', () => {
+			const isOpen = menuBtn.classList.toggle('active');
+
+			headerMenu.classList.toggle('active', isOpen);
+			body.classList.toggle('no-scroll', isOpen);
+			menuBtn.setAttribute('aria-expanded', String(isOpen));
+		});
+	}
 	
 	const dropdownMedia = window.matchMedia('(max-width: 1200px)');
 
@@ -27,11 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (dropdown !== currentDropdown) {
 					dropdown.classList.remove('active');
 					dropdown.querySelector('.dropdown__btn').classList.remove('active');
+					dropdown.querySelector('.dropdown__btn').setAttribute('aria-expanded', 'false');
 				}
 			});
 
-			currentDropdown.classList.toggle('active');
-			this.classList.toggle('active');
+			const isOpen = currentDropdown.classList.toggle('active');
+			this.classList.toggle('active', isOpen);
+			this.setAttribute('aria-expanded', String(isOpen));
 		});
 	});
 
@@ -292,6 +298,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 
 	const slider = document.querySelector('.blog__filter-category');
+	const blogSort = document.querySelector('.blog__filter-sort');
+
+	if (blogSort) {
+		blogSort.addEventListener('change', () => {
+			blogSort.form?.submit();
+		});
+	}
 
 	if (slider) {
 		let isDown = false;
@@ -342,6 +355,50 @@ document.addEventListener('DOMContentLoaded', () => {
 				isDragging = false;
 			}
 		}, true);
+	}
+
+	const awardsFilter = document.querySelector('[data-awards-filter]');
+
+	if (awardsFilter) {
+		const filterLinks = awardsFilter.querySelectorAll('[data-award-platform]');
+		const awardItems = awardsFilter.querySelectorAll('[data-award-item]');
+		const yearGroups = awardsFilter.querySelectorAll('[data-award-year]');
+
+		const applyAwardsFilter = (platform) => {
+			const available = Array.from(filterLinks).some((link) => link.dataset.awardPlatform === platform);
+			const activePlatform = available ? platform : 'all';
+
+			filterLinks.forEach((link) => {
+				link.classList.toggle('active', link.dataset.awardPlatform === activePlatform);
+			});
+
+			awardItems.forEach((item) => {
+				item.hidden = activePlatform !== 'all' && item.dataset.platform !== activePlatform;
+			});
+
+			yearGroups.forEach((group) => {
+				group.hidden = !group.querySelector('[data-award-item]:not([hidden])');
+			});
+		};
+
+		filterLinks.forEach((link) => {
+			link.addEventListener('click', (event) => {
+				event.preventDefault();
+				const platform = link.dataset.awardPlatform;
+				const url = new URL(window.location.href);
+
+				if (platform === 'all') {
+					url.searchParams.delete('platform');
+				} else {
+					url.searchParams.set('platform', platform);
+				}
+
+				window.history.replaceState({}, '', url);
+				applyAwardsFilter(platform);
+			});
+		});
+
+		applyAwardsFilter(new URL(window.location.href).searchParams.get('platform') || 'all');
 	}
 
 });

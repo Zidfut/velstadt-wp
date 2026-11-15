@@ -1,0 +1,110 @@
+{
+    "key": "group_velstadt_awards_page",
+    "title": "Awards & Recognition Page",
+    "fields": [
+        { "key": "field_velstadt_awards_hero_tab", "label": "Hero", "name": "", "type": "tab", "placement": "top", "endpoint": 0 },
+        { "key": "field_velstadt_awards_hero_show", "label": "Show section", "name": "awards_hero_show", "type": "true_false", "ui": 1, "default_value": 1 },
+        { "key": "field_velstadt_awards_hero_subtitle", "label": "Eyebrow", "name": "awards_hero_subtitle", "type": "text", "default_value": "" },
+        { "key": "field_velstadt_awards_hero_title", "label": "Title", "name": "awards_hero_title", "type": "text", "default_value": "" },
+        { "key": "field_velstadt_awards_hero_description", "label": "Description", "name": "awards_hero_description", "type": "textarea", "rows": 4, "new_lines": "", "default_value": "" },
+
+        { "key": "field_velstadt_awards_platforms_tab", "label": "Platform cards", "name": "", "type": "tab", "placement": "top", "endpoint": 0 },
+        { "key": "field_velstadt_awards_platforms_show", "label": "Show section", "name": "awards_platforms_show", "type": "true_false", "ui": 1, "default_value": 1 },
+        {
+            "key": "field_velstadt_awards_platform_cards",
+            "label": "Selected platforms",
+            "name": "awards_platform_cards",
+            "type": "repeater",
+            "instructions": "Select and reorder the platform cards shown below the hero. Card content is edited in Awards > Award Platforms.",
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_velstadt_awards_platform_card_term",
+            "button_label": "Add platform",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_velstadt_awards_platform_card_term",
+                    "label": "Platform",
+                    "name": "platform",
+                    "type": "taxonomy",
+                    "taxonomy": "award_platform",
+                    "field_type": "select",
+                    "allow_null": 0,
+                    "add_term": 0,
+                    "save_terms": 0,
+                    "load_terms": 0,
+                    "return_format": "id",
+                    "multiple": 0,
+                    "parent_repeater": "field_velstadt_awards_platform_cards"
+                }
+            ]
+        },
+
+        { "key": "field_velstadt_awards_timeline_tab", "label": "Awards timeline", "name": "", "type": "tab", "placement": "top", "endpoint": 0 },
+        { "key": "field_velstadt_awards_rankings_show", "label": "Show section", "name": "awards_rankings_show", "type": "true_false", "ui": 1, "default_value": 1 },
+        { "key": "field_velstadt_awards_rankings_subtitle", "label": "Eyebrow", "name": "awards_rankings_subtitle", "type": "text", "default_value": "" },
+        { "key": "field_velstadt_awards_rankings_title", "label": "Title", "name": "awards_rankings_title", "type": "text", "default_value": "" },
+        {
+            "key": "field_velstadt_awards_year_sections",
+            "label": "Year sections",
+            "name": "awards_year_sections",
+            "type": "repeater",
+            "instructions": "Add a heading for each award year. Awards are selected automatically by their Award Year field.",
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_velstadt_awards_year",
+            "button_label": "Add year",
+            "rows_per_page": 20,
+            "sub_fields": [
+                { "key": "field_velstadt_awards_year", "label": "Year", "name": "year", "type": "number", "required": 1, "min": 2000, "max": 2100, "step": 1, "parent_repeater": "field_velstadt_awards_year_sections" },
+                { "key": "field_velstadt_awards_year_heading", "label": "Heading", "name": "heading", "type": "text", "required": 1, "default_value": "", "parent_repeater": "field_velstadt_awards_year_sections" }
+            ]
+        },
+
+        { "key": "field_velstadt_awards_feedback_tab", "label": "Feedback", "name": "", "type": "tab", "placement": "top", "endpoint": 0 },
+        { "key": "field_velstadt_awards_feedback_show", "label": "Show section", "name": "awards_feedback_show", "type": "true_false", "ui": 1, "default_value": 1 },
+        { "key": "field_velstadt_awards_feedback_subtitle", "label": "Eyebrow", "name": "awards_feedback_subtitle", "type": "text", "default_value": "" },
+        { "key": "field_velstadt_awards_feedback_title", "label": "Title", "name": "awards_feedback_title", "type": "text", "default_value": "" },
+        {
+            "key": "field_velstadt_awards_feedback_items",
+            "label": "Reviews",
+            "name": "awards_feedback_items",
+            "type": "repeater",
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_velstadt_awards_feedback_name",
+            "button_label": "Add review",
+            "rows_per_page": 20,
+            "sub_fields": [
+                { "key": "field_velstadt_awards_feedback_rating", "label": "Displayed rating", "name": "rating", "type": "text", "default_value": "", "wrapper": { "width": "25" }, "parent_repeater": "field_velstadt_awards_feedback_items" },
+                { "key": "field_velstadt_awards_feedback_stars", "label": "Stars", "name": "stars", "type": "number", "default_value": 5, "min": 0, "max": 5, "step": 1, "wrapper": { "width": "25" }, "parent_repeater": "field_velstadt_awards_feedback_items" },
+                { "key": "field_velstadt_awards_feedback_label", "label": "Service label", "name": "label", "type": "text", "default_value": "", "wrapper": { "width": "50" }, "parent_repeater": "field_velstadt_awards_feedback_items" },
+                { "key": "field_velstadt_awards_feedback_quote", "label": "Quote", "name": "quote", "type": "textarea", "rows": 4, "new_lines": "", "default_value": "", "parent_repeater": "field_velstadt_awards_feedback_items" },
+                { "key": "field_velstadt_awards_feedback_logo", "label": "Platform logo", "name": "logo", "type": "image", "return_format": "array", "preview_size": "thumbnail", "library": "all", "wrapper": { "width": "50" }, "parent_repeater": "field_velstadt_awards_feedback_items" },
+                { "key": "field_velstadt_awards_feedback_logo_asset", "label": "Bundled logo fallback", "name": "logo_asset", "type": "text", "instructions": "Path inside markup/images, used only when no image is uploaded.", "default_value": "", "wrapper": { "width": "50" }, "parent_repeater": "field_velstadt_awards_feedback_items" },
+                { "key": "field_velstadt_awards_feedback_name", "label": "Author name", "name": "name", "type": "text", "default_value": "", "wrapper": { "width": "50" }, "parent_repeater": "field_velstadt_awards_feedback_items" },
+                { "key": "field_velstadt_awards_feedback_position", "label": "Author position / company", "name": "position", "type": "text", "default_value": "", "wrapper": { "width": "50" }, "parent_repeater": "field_velstadt_awards_feedback_items" }
+            ]
+        }
+    ],
+    "location": [[{ "param": "page_template", "operator": "==", "value": "page-awards-and-recognition.php" }]],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "Editable content for the Awards & Recognition page.",
+    "show_in_rest": false,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1794699674
+}

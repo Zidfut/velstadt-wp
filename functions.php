@@ -138,16 +138,67 @@ add_action( 'widgets_init', 'velstadt_widgets_init' );
  * Enqueue scripts and styles.
  */
 function velstadt_scripts() {
-	wp_enqueue_style( 'velstadt-style', get_stylesheet_uri(), array(), _S_VERSION );
+	$theme_dir = get_template_directory();
+	$asset_version = static function ( $relative_path ) use ( $theme_dir ) {
+		$path = $theme_dir . $relative_path;
+
+		return file_exists( $path ) ? (string) filemtime( $path ) : _S_VERSION;
+	};
+
+	wp_enqueue_style( 'velstadt-style', get_stylesheet_uri(), array(), $asset_version( '/style.css' ) );
 	wp_style_add_data( 'velstadt-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'velstadt-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_style(
+		'velstadt-swiper',
+		get_template_directory_uri() . '/markup/libs/swiper/swiper.min.css',
+		array(),
+		$asset_version( '/markup/libs/swiper/swiper.min.css' )
+	);
+	wp_enqueue_style(
+		'velstadt-layout',
+		get_template_directory_uri() . '/markup/css/styles.css',
+		array( 'velstadt-style', 'velstadt-swiper' ),
+		$asset_version( '/markup/css/styles.css' )
+	);
+
+	wp_enqueue_script(
+		'velstadt-swiper',
+		get_template_directory_uri() . '/markup/libs/swiper/swiper.min.js',
+		array(),
+		$asset_version( '/markup/libs/swiper/swiper.min.js' ),
+		true
+	);
+	wp_enqueue_script(
+		'velstadt-scripts',
+		get_template_directory_uri() . '/markup/js/scripts.js',
+		array( 'velstadt-swiper' ),
+		$asset_version( '/markup/js/scripts.js' ),
+		true
+	);
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'velstadt_scripts' );
+
+/**
+ * Keep Contact Form 7 from wrapping form markup in automatic paragraphs.
+ *
+ * Mail formatting is left unchanged; this only affects front-end forms.
+ *
+ * @param bool  $autop   Whether automatic paragraphs are enabled.
+ * @param mixed $options Contact Form 7 context options.
+ * @return bool
+ */
+function velstadt_disable_cf7_form_autop( $autop, $options ) {
+	if ( is_array( $options ) && isset( $options['for'] ) && 'mail' === $options['for'] ) {
+		return $autop;
+	}
+
+	return false;
+}
+add_filter( 'wpcf7_autop_or_not', 'velstadt_disable_cf7_form_autop', 10, 2 );
 
 /**
  * Implement the Custom Header feature.
@@ -163,6 +214,36 @@ require get_template_directory() . '/inc/template-tags.php';
  * Functions which enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/template-functions.php';
+
+/**
+ * Editable header settings and helpers.
+ */
+require get_template_directory() . '/inc/header-settings.php';
+
+/**
+ * Editable footer settings and helpers.
+ */
+require get_template_directory() . '/inc/footer-settings.php';
+
+/**
+ * Front page fields and helpers.
+ */
+require get_template_directory() . '/inc/home-fields.php';
+
+/**
+ * Awards post type and taxonomy.
+ */
+require get_template_directory() . '/inc/awards.php';
+
+/**
+ * Blog archive helpers.
+ */
+require get_template_directory() . '/inc/blog.php';
+
+/**
+ * Generic content page helpers.
+ */
+require get_template_directory() . '/inc/content-page.php';
 
 /**
  * Customizer additions.
