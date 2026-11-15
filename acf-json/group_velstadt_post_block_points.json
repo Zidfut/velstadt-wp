@@ -1,0 +1,13 @@
+{
+    "key": "group_velstadt_post_block_points",
+    "title": "Post Block: Points",
+    "fields": [
+        { "key": "field_velstadt_points_items", "label": "Cards", "name": "items", "type": "repeater", "layout": "block", "button_label": "Add card", "sub_fields": [
+            { "key": "field_velstadt_points_item_icon", "label": "Icon", "name": "icon", "type": "image", "return_format": "id", "preview_size": "thumbnail", "library": "all", "parent_repeater": "field_velstadt_points_items" },
+            { "key": "field_velstadt_points_item_title", "label": "Title", "name": "title", "type": "text", "parent_repeater": "field_velstadt_points_items" },
+            { "key": "field_velstadt_points_item_content", "label": "Text", "name": "content", "type": "textarea", "rows": 3, "new_lines": "", "parent_repeater": "field_velstadt_points_items" }
+        ] }
+    ],
+    "location": [[{ "param": "block", "operator": "==", "value": "acf/velstadt-points" }]],
+    "menu_order": 0, "position": "normal", "style": "default", "label_placement": "top", "instruction_placement": "label", "active": true, "show_in_rest": 0, "modified": 1794723003
+}

@@ -1,0 +1,11 @@
+{
+    "key": "group_velstadt_post_block_note",
+    "title": "Post Block: Note",
+    "fields": [
+        { "key": "field_velstadt_note_variant", "label": "Style", "name": "variant", "type": "button_group", "choices": { "info": "Info", "alert": "Alert", "success": "Success" }, "default_value": "info", "return_format": "value", "layout": "horizontal" },
+        { "key": "field_velstadt_note_title", "label": "Title", "name": "title", "type": "text" },
+        { "key": "field_velstadt_note_content", "label": "Content", "name": "content", "type": "wysiwyg", "tabs": "all", "toolbar": "basic", "media_upload": 0, "delay": 0 }
+    ],
+    "location": [[{ "param": "block", "operator": "==", "value": "acf/velstadt-note" }]],
+    "menu_order": 0, "position": "normal", "style": "default", "label_placement": "top", "instruction_placement": "label", "active": true, "show_in_rest": 0, "modified": 1794723006
+}

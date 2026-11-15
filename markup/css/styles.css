@@ -7483,7 +7483,7 @@ body {
                 align-items: center;
                 justify-content: flex-start;
                 gap: 16px;
-                flex: 1 1 230px;
+                /* flex: 1 1 230px; */
 
                 @media (width <= 1024px) {
                     width: 100%;
@@ -7557,6 +7557,14 @@ body {
         display: grid;
         grid-template-columns: 1fr 0.39fr;
         padding: 0;
+
+        &.post__container--wide {
+            grid-template-columns: 1fr;
+
+            .post__content {
+                border-right: 0;
+            }
+        }
 
         @media(width <= 1024px) {
             grid-template-columns: 1fr;

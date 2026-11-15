@@ -31,6 +31,11 @@ function velstadt_setup() {
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
 
+	// Use the front-end design system inside the Gutenberg canvas.
+	add_theme_support( 'editor-styles' );
+	add_editor_style( 'markup/css/styles.css' );
+	add_editor_style( 'css/editor.css' );
+
 	/*
 		* Let WordPress manage the document title.
 		* By adding theme support, we declare that this theme does not use a
@@ -241,9 +246,19 @@ require get_template_directory() . '/inc/awards.php';
 require get_template_directory() . '/inc/blog.php';
 
 /**
+ * Single post helpers and editorial blocks.
+ */
+require get_template_directory() . '/inc/post.php';
+
+/**
  * Generic content page helpers.
  */
 require get_template_directory() . '/inc/content-page.php';
+
+/**
+ * Services page fields and helpers.
+ */
+require get_template_directory() . '/inc/services-fields.php';
 
 /**
  * Customizer additions.

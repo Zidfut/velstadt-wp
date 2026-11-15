@@ -1,0 +1,12 @@
+{
+    "key": "group_velstadt_post_block_download",
+    "title": "Post Block: Download",
+    "fields": [
+        { "key": "field_velstadt_download_title", "label": "Title", "name": "title", "type": "text" },
+        { "key": "field_velstadt_download_meta", "label": "File details", "name": "meta", "type": "text", "instructions": "For example: 1.2 MB · PDF" },
+        { "key": "field_velstadt_download_file", "label": "File", "name": "file", "type": "file", "return_format": "array", "library": "all" },
+        { "key": "field_velstadt_download_button_label", "label": "Button label", "name": "button_label", "type": "text", "default_value": "Download" }
+    ],
+    "location": [[{ "param": "block", "operator": "==", "value": "acf/velstadt-download" }]],
+    "menu_order": 0, "position": "normal", "style": "default", "label_placement": "top", "instruction_placement": "label", "active": true, "show_in_rest": 0, "modified": 1794723011
+}

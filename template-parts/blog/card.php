@@ -8,6 +8,7 @@
  */
 
 $post_id = isset( $args['post_id'] ) ? (int) $args['post_id'] : get_the_ID();
+$classes = 'blog__grid-card' . ( ! empty( $args['class'] ) ? ' ' . sanitize_html_class( $args['class'] ) : '' );
 if ( ! $post_id ) {
 	return;
 }
@@ -20,7 +21,7 @@ $excerpt     = get_the_excerpt( $post_id );
 $excerpt     = $excerpt ?: wp_trim_words( wp_strip_all_tags( get_post_field( 'post_content', $post_id ) ), 24 );
 $permalink   = get_permalink( $post_id );
 ?>
-<article class="blog__grid-card">
+<article class="<?php echo esc_attr( $classes ); ?>">
 	<a href="<?php echo esc_url( $permalink ); ?>" class="blog__grid-card-img">
 		<?php velstadt_blog_post_image( $post_id ); ?>
 	</a>

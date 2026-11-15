@@ -1,0 +1,83 @@
+/*
+ * Gutenberg canvas adjustments.
+ * The component styles themselves come from markup/css/styles.css.
+ */
+
+.editor-styles-wrapper {
+	background: var(--background, #fdfcfc);
+	color: var(--gray-900, #11101f);
+	font-family: var(--font-family, "Onest", sans-serif);
+}
+
+.editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper,
+.editor-styles-wrapper .wp-block-post-title,
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container {
+	max-width: 960px;
+	margin-inline: auto;
+}
+
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container {
+	padding: 32px;
+}
+
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > * + * {
+	margin-block-start: 24px;
+}
+
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > p,
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > ul,
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > ol {
+	color: var(--gray-500, #756e88);
+	font-family: var(--font-family, "Onest", sans-serif);
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.5;
+}
+
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > h2,
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > h3,
+.editor-styles-wrapper .wp-block-heading {
+	color: var(--gray-900, #11101f);
+	font-family: var(--font-family, "Onest", sans-serif);
+	font-size: 24px;
+	font-weight: 500;
+	line-height: 1.33;
+}
+
+.editor-styles-wrapper [data-type^="acf/velstadt-"] {
+	max-width: 100%;
+}
+
+.editor-styles-wrapper [data-type^="acf/velstadt-"] .acf-block-preview,
+.editor-styles-wrapper [data-type^="acf/velstadt-"] .acf-block-preview > .post__block {
+	width: 100%;
+}
+
+.editor-styles-wrapper [data-type^="acf/velstadt-"] .acf-block-preview {
+	box-sizing: border-box;
+}
+
+.editor-styles-wrapper [data-type^="acf/velstadt-"] .acf-block-preview img {
+	max-width: 100%;
+	height: auto;
+}
+
+.editor-styles-wrapper .wp-block-acf-velstadt-key-takeaways,
+.editor-styles-wrapper .wp-block-acf-velstadt-details,
+.editor-styles-wrapper .wp-block-acf-velstadt-points,
+.editor-styles-wrapper .wp-block-acf-velstadt-action-rows,
+.editor-styles-wrapper .wp-block-acf-velstadt-quote,
+.editor-styles-wrapper .wp-block-acf-velstadt-note,
+.editor-styles-wrapper .wp-block-acf-velstadt-metrics,
+.editor-styles-wrapper .wp-block-acf-velstadt-faq,
+.editor-styles-wrapper .wp-block-acf-velstadt-sources,
+.editor-styles-wrapper .wp-block-acf-velstadt-related,
+.editor-styles-wrapper .wp-block-acf-velstadt-download {
+	margin-block: 24px;
+}
+
+@media (width <= 782px) {
+	.editor-styles-wrapper .block-editor-block-list__layout.is-root-container {
+		padding: 16px;
+	}
+}

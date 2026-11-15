@@ -401,4 +401,30 @@ document.addEventListener('DOMContentLoaded', () => {
 		applyAwardsFilter(new URL(window.location.href).searchParams.get('platform') || 'all');
 	}
 
+	document.querySelectorAll('.toc').forEach((toc) => {
+		const links = Array.from(toc.querySelectorAll('a[href^="#"]'));
+		const sections = links
+			.map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1))))
+			.filter(Boolean);
+
+		if (!sections.length) return;
+
+		const setActiveLink = (id) => {
+			links.forEach((link) => {
+				link.classList.toggle('active', decodeURIComponent(link.hash.slice(1)) === id);
+			});
+		};
+
+		setActiveLink(sections[0].id);
+		const observer = new IntersectionObserver((entries) => {
+			const visible = entries
+				.filter((entry) => entry.isIntersecting)
+				.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+			if (visible.length) setActiveLink(visible[0].target.id);
+		}, { rootMargin: '-20% 0px -65% 0px', threshold: 0 });
+
+		sections.forEach((section) => observer.observe(section));
+	});
+
 });
