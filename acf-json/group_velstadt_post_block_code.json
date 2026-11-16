@@ -1,0 +1,16 @@
+{
+    "key": "group_velstadt_post_block_code",
+    "title": "Post Block: Code",
+    "fields": [
+        {
+            "key": "field_velstadt_code_language", "name": "language", "label": "Language", "type": "select",
+            "choices": {"text": "Plain text", "json": "JSON", "http": "HTTP", "html": "HTML", "css": "CSS", "javascript": "JavaScript", "typescript": "TypeScript", "php": "PHP", "python": "Python", "bash": "Bash", "sql": "SQL", "yaml": "YAML", "xml": "XML"},
+            "default_value": "json", "return_format": "value", "allow_null": 1, "ui": 1,
+            "instructions": "Optional label in the header. Code is displayed without syntax highlighting."
+        },
+        {"key": "field_velstadt_code_title", "name": "title", "label": "Title", "type": "text", "instructions": "Optional header title, for example Request example."},
+        {"key": "field_velstadt_code_content", "name": "code", "label": "Code", "type": "textarea", "rows": 12, "new_lines": "", "required": 1, "instructions": "Paste plain code. Spaces, tabs and line breaks are preserved. The snippet is displayed as text and is not executed."}
+    ],
+    "location": [[{"param": "block", "operator": "==", "value": "acf/velstadt-code"}]],
+    "position": "normal", "style": "default", "active": true
+}

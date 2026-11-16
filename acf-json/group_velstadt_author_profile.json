@@ -1,0 +1,35 @@
+{
+    "key": "group_velstadt_author_profile",
+    "title": "Author Profile",
+    "fields": [
+        {
+            "key": "field_velstadt_author_kind", "name": "author_kind", "label": "Author type", "type": "select",
+            "choices": {"person": "Person", "team": "Team"}, "default_value": "person", "return_format": "value"
+        },
+        {
+            "key": "field_velstadt_author_position", "name": "author_position", "label": "Position or specialization", "type": "text"
+        },
+        {
+            "key": "field_velstadt_author_bio", "name": "author_bio", "label": "Short bio", "type": "textarea", "rows": 4, "new_lines": ""
+        },
+        {
+            "key": "field_velstadt_author_avatar", "name": "author_avatar", "label": "Avatar", "type": "image",
+            "return_format": "id", "preview_size": "thumbnail", "library": "all", "mime_types": "jpg,jpeg,png,webp,avif",
+            "instructions": "Select an image from the Media Library. Without an image, initials from the first two words of the name are displayed."
+        },
+        {
+            "key": "field_velstadt_author_socials", "name": "author_socials", "label": "Social links", "type": "repeater", "layout": "row", "button_label": "Add link",
+            "sub_fields": [
+                {
+                    "key": "field_velstadt_author_social_platform", "name": "platform", "label": "Platform", "type": "select",
+                    "choices": {"linkedin": "LinkedIn", "x": "X", "instagram": "Instagram", "facebook": "Facebook", "website": "Website"}, "default_value": "linkedin", "return_format": "value"
+                },
+                {"key": "field_velstadt_author_social_url", "name": "url", "label": "URL", "type": "url", "required": 1},
+                {"key": "field_velstadt_author_social_icon", "name": "icon", "label": "Icon", "type": "image", "return_format": "id", "preview_size": "thumbnail", "library": "all", "instructions": "Select an icon from the Media Library. Without an icon, the platform name is displayed."}
+            ]
+        }
+    ],
+    "location": [[{"param": "post_type", "operator": "==", "value": "velstadt_author"}]],
+    "position": "normal", "style": "default", "active": true,
+    "modified": 1794850697
+}

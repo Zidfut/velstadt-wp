@@ -172,7 +172,7 @@
                 },
                 {
                     "key": "field_velstadt_footer_ai_icon",
-                    "label": "Custom icon",
+                    "label": "Icon",
                     "name": "icon",
                     "aria-label": "",
                     "type": "image",
@@ -194,35 +194,6 @@
                     "max_height": 0,
                     "max_size": 0,
                     "mime_types": "",
-                    "parent_repeater": "field_velstadt_footer_ai_links"
-                },
-                {
-                    "key": "field_velstadt_footer_ai_asset",
-                    "label": "Bundled icon fallback",
-                    "name": "icon_asset",
-                    "aria-label": "",
-                    "type": "select",
-                    "instructions": "",
-                    "required": false,
-                    "conditional_logic": false,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "allow_null": 1,
-                    "choices": {
-                        "icons\/claude.svg": "Claude",
-                        "icons\/gpt.svg": "GPT"
-                    },
-                    "multiple": 0,
-                    "default_value": false,
-                    "ui": 0,
-                    "ajax": 0,
-                    "placeholder": "",
-                    "return_format": "value",
-                    "create_options": 0,
-                    "save_options": 0,
                     "parent_repeater": "field_velstadt_footer_ai_links"
                 }
             ]
@@ -516,7 +487,7 @@
                 },
                 {
                     "key": "field_velstadt_footer_social_icon",
-                    "label": "Custom icon",
+                    "label": "Icon",
                     "name": "icon",
                     "aria-label": "",
                     "type": "image",
@@ -538,37 +509,6 @@
                     "max_height": 0,
                     "max_size": 0,
                     "mime_types": "",
-                    "parent_repeater": "field_velstadt_footer_socials"
-                },
-                {
-                    "key": "field_velstadt_footer_social_asset",
-                    "label": "Bundled icon fallback",
-                    "name": "icon_asset",
-                    "aria-label": "",
-                    "type": "select",
-                    "instructions": "",
-                    "required": false,
-                    "conditional_logic": false,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "allow_null": 1,
-                    "choices": {
-                        "icons\/facebook.svg": "Facebook",
-                        "icons\/medium.svg": "Medium",
-                        "icons\/linkedin.svg": "LinkedIn",
-                        "icons\/twitter.svg": "X \/ Twitter"
-                    },
-                    "multiple": 0,
-                    "default_value": false,
-                    "ui": 0,
-                    "ajax": 0,
-                    "placeholder": "",
-                    "return_format": "value",
-                    "create_options": 0,
-                    "save_options": 0,
                     "parent_repeater": "field_velstadt_footer_socials"
                 }
             ]
@@ -719,5 +659,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1794691311
+    "modified": 1794849212
 }

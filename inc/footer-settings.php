@@ -30,11 +30,11 @@ function velstadt_footer_default_content() {
 		'ai_links' => array(
 			array(
 				'link'       => velstadt_footer_default_link( 'Claude' ),
-				'icon_asset' => 'icons/claude.svg',
+				'icon'       => 0,
 			),
 			array(
 				'link'       => velstadt_footer_default_link( 'GPT' ),
-				'icon_asset' => 'icons/gpt.svg',
+				'icon'       => 0,
 			),
 		),
 		'menu_columns' => array(
@@ -121,10 +121,10 @@ function velstadt_footer_default_content() {
 			),
 		),
 		'socials' => array(
-			array( 'link' => velstadt_footer_default_link( 'Facebook' ), 'icon_asset' => 'icons/facebook.svg' ),
-			array( 'link' => velstadt_footer_default_link( 'Medium' ), 'icon_asset' => 'icons/medium.svg' ),
-			array( 'link' => velstadt_footer_default_link( 'LinkedIn' ), 'icon_asset' => 'icons/linkedin.svg' ),
-			array( 'link' => velstadt_footer_default_link( 'X' ), 'icon_asset' => 'icons/twitter.svg' ),
+			array( 'link' => velstadt_footer_default_link( 'Facebook' ), 'icon' => 0 ),
+			array( 'link' => velstadt_footer_default_link( 'Medium' ), 'icon' => 0 ),
+			array( 'link' => velstadt_footer_default_link( 'LinkedIn' ), 'icon' => 0 ),
+			array( 'link' => velstadt_footer_default_link( 'X' ), 'icon' => 0 ),
 		),
 		'legal_links' => array(
 			array( 'link' => velstadt_footer_default_link( 'Privacy Policy' ) ),
@@ -201,13 +201,12 @@ function velstadt_normalize_footer_link( $link, $fallback_text = '' ) {
 }
 
 /**
- * Return an image URL from an SCF image value or bundled asset name.
+ * Return a Media Library image URL from an SCF image value.
  *
  * @param mixed  $image SCF image value.
- * @param string $asset Relative bundled asset path.
  * @return string
  */
-function velstadt_footer_image_url( $image, $asset = '' ) {
+function velstadt_footer_image_url( $image ) {
 	if ( is_array( $image ) && ! empty( $image['url'] ) ) {
 		return $image['url'];
 	}
@@ -219,5 +218,5 @@ function velstadt_footer_image_url( $image, $asset = '' ) {
 		}
 	}
 
-	return $asset ? get_template_directory_uri() . '/markup/images/' . ltrim( $asset, '/' ) : '';
+	return '';
 }

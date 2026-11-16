@@ -1,0 +1,33 @@
+{
+    "key": "group_velstadt_post_block_table",
+    "title": "Post Block: Table",
+    "fields": [
+        {"key": "field_velstadt_table_caption", "name": "caption", "label": "Caption", "type": "text", "instructions": "Optional label displayed above the table."},
+        {"key": "field_velstadt_table_layout", "name": "layout", "label": "Layout", "type": "button_group", "choices": {"standard": "Standard table", "comparison": "Comparison matrix"}, "default_value": "standard", "return_format": "value"},
+        {"key": "field_velstadt_table_row_headers", "name": "row_headers", "label": "First column contains row headings", "type": "true_false", "default_value": 0, "ui": 1, "instructions": "Comparison matrices always use the first column as row headings."},
+        {
+            "key": "field_velstadt_table_columns", "name": "columns", "label": "Columns", "type": "repeater", "layout": "row", "min": 1, "max": 12, "button_label": "Add column", "collapsed": "field_velstadt_table_column_heading",
+            "sub_fields": [
+                {"key": "field_velstadt_table_column_heading", "name": "heading", "label": "Heading", "type": "text", "required": 1, "parent_repeater": "field_velstadt_table_columns"},
+                {"key": "field_velstadt_table_column_width", "name": "width", "label": "Width", "type": "number", "min": 1, "max": 100, "step": 1, "append": "%", "instructions": "Optional. Leave all widths empty for equal columns. If setting every width, use a total of 100%.", "parent_repeater": "field_velstadt_table_columns"},
+                {"key": "field_velstadt_table_column_alignment", "name": "alignment", "label": "Alignment", "type": "select", "choices": {"left": "Left", "center": "Center", "right": "Right"}, "default_value": "left", "return_format": "value", "parent_repeater": "field_velstadt_table_columns"},
+                {"key": "field_velstadt_table_column_highlight", "name": "highlight", "label": "Highlight column", "type": "true_false", "default_value": 0, "ui": 1, "parent_repeater": "field_velstadt_table_columns"},
+                {"key": "field_velstadt_table_column_badge", "name": "badge", "label": "Badge", "type": "text", "instructions": "Optional header badge, for example Recommended.", "parent_repeater": "field_velstadt_table_columns"}
+            ]
+        },
+        {
+            "key": "field_velstadt_table_rows", "name": "rows", "label": "Rows", "type": "repeater", "layout": "block", "min": 1, "button_label": "Add row",
+            "instructions": "Add cells in the same order as the columns. Missing cells display empty; cells beyond the column count are not displayed. Reordering columns does not move the row cells automatically.",
+            "sub_fields": [
+                {
+                    "key": "field_velstadt_table_row_cells", "name": "cells", "label": "Cells", "type": "repeater", "layout": "table", "max": 12, "button_label": "Add cell", "parent_repeater": "field_velstadt_table_rows",
+                    "sub_fields": [
+                        {"key": "field_velstadt_table_cell_content", "name": "content", "label": "Content", "type": "textarea", "rows": 2, "new_lines": "", "parent_repeater": "field_velstadt_table_row_cells"}
+                    ]
+                }
+            ]
+        }
+    ],
+    "location": [[{"param": "block", "operator": "==", "value": "acf/velstadt-table"}]],
+    "position": "normal", "style": "default", "active": true
+}

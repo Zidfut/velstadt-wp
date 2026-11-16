@@ -1,0 +1,32 @@
+{
+    "key": "post_type_velstadt_author",
+    "title": "Authors",
+    "active": true,
+    "post_type": "velstadt_author",
+    "advanced_configuration": true,
+    "labels": {
+        "name": "Authors",
+        "singular_name": "Author",
+        "menu_name": "Authors",
+        "all_items": "All Authors",
+        "add_new_item": "Add New Author",
+        "edit_item": "Edit Author",
+        "search_items": "Search Authors"
+    },
+    "description": "People and teams credited in articles, independent of WordPress user accounts.",
+    "public": false,
+    "publicly_queryable": false,
+    "exclude_from_search": true,
+    "show_ui": true,
+    "show_in_menu": true,
+    "show_in_rest": true,
+    "show_in_nav_menus": false,
+    "menu_icon": "dashicons-groups",
+    "supports": ["title"],
+    "has_archive": false,
+    "rewrite": {"permalink_rewrite": "no_permalink"},
+    "query_var": "none",
+    "delete_with_user": false,
+    "enter_title_here": "Person or team name",
+    "modified": 1794850697
+}

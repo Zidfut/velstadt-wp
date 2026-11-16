@@ -1,0 +1,36 @@
+{
+    "key": "group_velstadt_post_sidebar",
+    "title": "Post sidebar",
+    "fields": [
+        { "key": "field_velstadt_post_sidebar_share_tab", "label": "Share article", "type": "tab" },
+        { "key": "field_velstadt_post_sidebar_share_show", "label": "Show share buttons", "name": "post_sidebar_share_show", "type": "true_false", "default_value": 1, "ui": 1 },
+        { "key": "field_velstadt_post_sidebar_share_title", "label": "Share heading", "name": "post_sidebar_share_title", "type": "text", "default_value": "Share article" },
+        {
+            "key": "field_velstadt_post_sidebar_networks", "label": "Share buttons", "name": "post_sidebar_networks", "type": "checkbox",
+            "instructions": "Each button shares the current article. Copy link copies its permalink.",
+            "choices": { "copy": "Copy link", "facebook": "Facebook", "x": "X", "linkedin": "LinkedIn" },
+            "default_value": ["copy", "facebook", "x", "linkedin"], "return_format": "value"
+        },
+        { "key": "field_velstadt_post_sidebar_badge_tab", "label": "Google badge", "type": "tab" },
+        { "key": "field_velstadt_post_sidebar_badge_show", "label": "Show badge", "name": "post_sidebar_badge_show", "type": "true_false", "default_value": 1, "ui": 1 },
+        { "key": "field_velstadt_post_sidebar_badge_url", "label": "Badge link", "name": "post_sidebar_badge_url", "type": "url", "instructions": "The badge is displayed only when this URL is filled in." },
+        { "key": "field_velstadt_post_sidebar_badge_image", "label": "Badge image", "name": "post_sidebar_badge_image", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all", "instructions": "Leave empty to use markup/images/google-source-badge.svg." },
+        { "key": "field_velstadt_post_sidebar_badge_alt", "label": "Badge alternative text", "name": "post_sidebar_badge_alt", "type": "text", "default_value": "Add Velstadt as a preferred source on Google" },
+        { "key": "field_velstadt_post_sidebar_form_tab", "label": "Subscription", "type": "tab" },
+        { "key": "field_velstadt_post_sidebar_form_show", "label": "Show subscription form", "name": "post_sidebar_form_show", "type": "true_false", "default_value": 1, "ui": 1 },
+        {
+            "key": "field_velstadt_post_sidebar_form_shortcode", "label": "Subscription form shortcode", "name": "post_sidebar_form_shortcode", "type": "text",
+            "instructions": "Copy the shortcode for Post sidebar subscription from Contact > Contact Forms. Edit its heading, description, button and policy links in Contact Form 7. Sidebar form classes are applied automatically. Newsletter service integration is configured separately."
+        }
+    ],
+    "location": [[{ "param": "options_page", "operator": "==", "value": "options" }]],
+    "menu_order": 20,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Shared sidebar blocks for every blog post.",
+    "show_in_rest": false,
+    "modified": 1794820000
+}

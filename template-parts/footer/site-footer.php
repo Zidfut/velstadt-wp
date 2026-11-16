@@ -23,7 +23,7 @@ $compliance_label = velstadt_get_footer_option( 'footer_compliance_label', __( '
 $compliance_items = velstadt_get_footer_option( 'footer_compliance_items', $has_scf ? array() : $defaults['compliance_items'] );
 $footer_logo      = velstadt_get_footer_option( 'footer_logo' );
 $logo_url         = velstadt_footer_image_url( $footer_logo );
-$badge_url        = velstadt_footer_image_url( velstadt_get_footer_option( 'footer_badge' ), 'badge-google.svg' );
+$badge_url        = velstadt_footer_image_url( velstadt_get_footer_option( 'footer_badge' ) );
 $copyright        = str_replace( '{year}', wp_date( 'Y' ), (string) $copyright );
 $ai_links         = is_array( $ai_links ) ? $ai_links : array();
 $menu_columns     = is_array( $menu_columns ) ? $menu_columns : array();
@@ -48,17 +48,11 @@ $target_attributes = static function ( $link ) {
 		<div class="footer__top">
 			<div class="footer__top-left">
 				<div class="footer__top-col">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer__logo" rel="home">
-						<?php
-						if ( $logo_url ) {
-							printf( '<img src="%1$s" alt="%2$s">', esc_url( $logo_url ), esc_attr( get_bloginfo( 'name' ) ) );
-						} elseif ( has_custom_logo() ) {
-							echo wp_get_attachment_image( get_theme_mod( 'custom_logo' ), 'full', false, array( 'alt' => get_bloginfo( 'name' ) ) );
-						} else {
-							printf( '<img src="%1$s" alt="%2$s">', esc_url( get_template_directory_uri() . '/markup/images/logo.svg' ), esc_attr( get_bloginfo( 'name' ) ) );
-						}
-						?>
-					</a>
+					<?php if ( $logo_url ) : ?>
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer__logo" rel="home">
+							<img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+						</a>
+					<?php endif; ?>
 					<?php if ( $description ) : ?>
 						<p><?php echo esc_html( $description ); ?></p>
 					<?php endif; ?>
@@ -78,7 +72,7 @@ $target_attributes = static function ( $link ) {
 							<?php foreach ( $ai_links as $ai_item ) : ?>
 								<?php
 								$ai_link = velstadt_normalize_footer_link( isset( $ai_item['link'] ) ? $ai_item['link'] : array() );
-								$ai_icon = velstadt_footer_image_url( isset( $ai_item['icon'] ) ? $ai_item['icon'] : null, isset( $ai_item['icon_asset'] ) ? $ai_item['icon_asset'] : '' );
+								$ai_icon = velstadt_footer_image_url( isset( $ai_item['icon'] ) ? $ai_item['icon'] : null );
 								?>
 								<a href="<?php echo esc_url( $ai_link['url'] ); ?>" class="btn btn--icon"<?php echo $target_attributes( $ai_link ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 									<?php if ( $ai_icon ) : ?>
@@ -153,7 +147,7 @@ $target_attributes = static function ( $link ) {
 									<?php foreach ( $socials as $social ) : ?>
 										<?php
 										$social_link = velstadt_normalize_footer_link( isset( $social['link'] ) ? $social['link'] : array() );
-										$social_icon = velstadt_footer_image_url( isset( $social['icon'] ) ? $social['icon'] : null, isset( $social['icon_asset'] ) ? $social['icon_asset'] : '' );
+										$social_icon = velstadt_footer_image_url( isset( $social['icon'] ) ? $social['icon'] : null );
 										?>
 										<li>
 											<a href="<?php echo esc_url( $social_link['url'] ); ?>" class="social__link" aria-label="<?php echo esc_attr( $social_link['title'] ); ?>"<?php echo $target_attributes( $social_link ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>

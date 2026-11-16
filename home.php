@@ -118,7 +118,6 @@ get_header();
 			<?php
 			$featured_category = velstadt_blog_primary_category( $featured_id );
 			$featured_author   = velstadt_blog_author_name( $featured_id );
-			$featured_initials = velstadt_blog_author_initials( $featured_author );
 			$featured_excerpt  = get_the_excerpt( $featured_id );
 			$featured_excerpt  = $featured_excerpt ?: wp_trim_words( wp_strip_all_tags( get_post_field( 'post_content', $featured_id ) ), 32 );
 			$featured_read     = velstadt_blog_reading_time( $featured_id );
@@ -133,7 +132,7 @@ get_header();
 						<h2 class="h2 blog__main-title"><a href="<?php echo esc_url( get_permalink( $featured_id ) ); ?>"><?php echo esc_html( get_the_title( $featured_id ) ); ?></a></h2>
 						<?php if ( $featured_excerpt ) : ?><p><?php echo esc_html( wp_strip_all_tags( $featured_excerpt ) ); ?></p><?php endif; ?>
 						<div class="blog__main-details">
-							<?php if ( $featured_initials ) : ?><span class="blog__main-details-icon"><?php echo esc_html( $featured_initials ); ?></span><?php endif; ?>
+							<?php echo velstadt_blog_author_avatar( $featured_id, 'blog__main-details-icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 							<div class="blog__main-details-col">
 								<?php if ( $featured_author ) : ?><span class="blog__main-details-name"><?php echo esc_html( $featured_author ); ?></span><?php endif; ?>
 								<span class="blog__main-details-date"><?php echo esc_html( get_the_date( 'F j, Y', $featured_id ) ); ?> · <?php echo esc_html( sprintf( _n( '%d min read', '%d min read', $featured_read, 'velstadt' ), $featured_read ) ); ?></span>

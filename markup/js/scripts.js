@@ -401,6 +401,93 @@ document.addEventListener('DOMContentLoaded', () => {
 		applyAwardsFilter(new URL(window.location.href).searchParams.get('platform') || 'all');
 	}
 
+	const postContent = document.querySelector('.post__content');
+	const progress = document.querySelector('.post__progress-line-current');
+	if (postContent && progress) {
+		let progressScheduled = false;
+		const updateProgress = () => {
+			const bounds = postContent.getBoundingClientRect();
+			const distance = bounds.height - window.innerHeight;
+			const ratio = distance > 0 ? -bounds.top / distance : (bounds.top <= 0 ? 1 : 0);
+			progress.style.width = `${Math.min(1, Math.max(0, ratio)) * 100}%`;
+			progressScheduled = false;
+		};
+		const scheduleProgress = () => {
+			if (!progressScheduled) {
+				progressScheduled = true;
+				window.requestAnimationFrame(updateProgress);
+			}
+		};
+		window.addEventListener('scroll', scheduleProgress, { passive: true });
+		window.addEventListener('resize', scheduleProgress);
+		if (window.ResizeObserver) new ResizeObserver(scheduleProgress).observe(postContent);
+		updateProgress();
+	}
+
+	const copyText = async (text) => {
+		try {
+			if (navigator.clipboard && window.isSecureContext) {
+				await navigator.clipboard.writeText(text);
+				return true;
+			}
+		} catch (error) { /* Try the fallback when clipboard access is unavailable. */ }
+		const activeElement = document.activeElement;
+		const selection = window.getSelection();
+		const ranges = selection ? Array.from({ length: selection.rangeCount }, (_, index) => selection.getRangeAt(index).cloneRange()) : [];
+		const input = document.createElement('textarea');
+		input.value = text;
+		input.style.position = 'fixed';
+		input.style.opacity = '0';
+		document.body.appendChild(input);
+		input.select();
+		let copied = false;
+		try { copied = document.execCommand('copy'); } catch (error) { copied = false; }
+		input.remove();
+		if (activeElement instanceof HTMLElement) activeElement.focus({ preventScroll: true });
+		if (selection) {
+			selection.removeAllRanges();
+			ranges.forEach((range) => selection.addRange(range));
+		}
+		return copied;
+	};
+
+	const codeCopyTimers = new WeakMap();
+	document.addEventListener('click', async (event) => {
+		const button = event.target instanceof Element ? event.target.closest('[data-copy-code]') : null;
+		if (!button) return;
+		const panel = button.closest('.post__code');
+		const code = panel ? panel.querySelector('.post__code-content code') : null;
+		const status = panel ? panel.querySelector('[data-code-status]') : null;
+		if (!code || !status) return;
+		const copied = await copyText(code.textContent);
+		window.clearTimeout(codeCopyTimers.get(button));
+		status.textContent = copied ? button.dataset.copySuccess : button.dataset.copyError;
+		button.classList.toggle('is-copied', copied);
+		button.setAttribute('aria-label', copied ? button.dataset.copySuccess : button.dataset.copyLabel);
+		button.title = copied ? button.dataset.copySuccess : button.dataset.copyLabel;
+		codeCopyTimers.set(button, window.setTimeout(() => {
+			status.textContent = '';
+			button.classList.remove('is-copied');
+			button.setAttribute('aria-label', button.dataset.copyLabel);
+			button.title = button.dataset.copyLabel;
+		}, copied ? 2500 : 5000));
+	});
+
+	document.querySelectorAll('[data-copy-post-link]').forEach((link) => {
+		link.addEventListener('click', async (event) => {
+			event.preventDefault();
+			const copied = await copyText(link.href);
+			const share = link.closest('.post__share, .share');
+			const status = share ? share.querySelector('[data-copy-status]') : null;
+			if (copied && status) {
+				status.textContent = link.dataset.copiedLabel;
+				window.setTimeout(() => { status.textContent = ''; }, 2500);
+			} else if (!copied) {
+				window.prompt(link.getAttribute('aria-label'), link.href);
+			}
+		});
+	});
+
 	document.querySelectorAll('.toc').forEach((toc) => {
 		const links = Array.from(toc.querySelectorAll('a[href^="#"]'));
 		const sections = links

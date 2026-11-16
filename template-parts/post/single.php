@@ -12,10 +12,17 @@ $posts_title    = $posts_page_id ? get_the_title( $posts_page_id ) : __( 'Blog',
 $category       = velstadt_blog_primary_category( $post_id );
 $eyebrow        = $category ? $category->name : $posts_title;
 $description    = get_the_excerpt( $post_id );
-$author_id      = (int) get_post_field( 'post_author', $post_id );
+$author_id      = velstadt_blog_author_id( $post_id );
 $author_name    = velstadt_blog_author_name( $post_id );
-$author_url     = get_author_posts_url( $author_id );
-$author_bio     = get_the_author_meta( 'description', $author_id );
+$author_position = $author_id ? get_field( 'author_position', $author_id ) : '';
+$author_socials = $author_id ? (array) ( get_field( 'author_socials', $author_id ) ?: array() ) : array();
+$author_linkedin = array();
+foreach ( $author_socials as $social ) {
+	if ( is_array( $social ) && isset( $social['platform'] ) && 'linkedin' === $social['platform'] && ! empty( $social['url'] ) ) {
+		$author_linkedin = $social;
+		break;
+	}
+}
 $read_time      = velstadt_blog_reading_time( $post_id );
 $published_date = get_the_date( 'F j, Y', $post_id );
 $modified_date  = get_the_modified_date( 'F j, Y', $post_id );
@@ -25,7 +32,7 @@ $toc            = $prepared['toc'];
 $related        = velstadt_post_related_posts( $post_id, 3 );
 ?>
 <main id="primary" class="page post">
-	<div class="header__duplicate header__duplicate--dark"><div class="container header__duplicate-container section__lines"></div></div>
+	<div id="top" class="header__duplicate header__duplicate--dark"><div class="container header__duplicate-container section__lines"></div></div>
 	<nav class="breadcrumbs" aria-label="<?php esc_attr_e( 'Breadcrumbs', 'velstadt' ); ?>">
 		<div class="container breadcrumbs__container section__lines"><ul>
 			<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'velstadt' ); ?></a></li>
@@ -41,13 +48,19 @@ $related        = velstadt_post_related_posts( $post_id, 3 );
 				<h1 class="h2 section__title"><?php the_title(); ?></h1>
 				<?php if ( $description ) : ?><p><?php echo esc_html( $description ); ?></p><?php endif; ?>
 				<div class="post__details">
+					<?php if ( $author_name ) : ?>
 					<div class="post__details-item post__author">
-						<?php echo get_avatar( $author_id, 80, '', $author_name, array( 'class' => 'post__author-img' ) ); ?>
+						<?php echo velstadt_blog_author_avatar( $post_id, 'post__author-img' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						<div class="post__details-col">
-							<?php if ( $author_name ) : ?><h2 class="h3 post__author-name post__details-title"><a href="<?php echo esc_url( $author_url ); ?>"><?php echo esc_html( $author_name ); ?></a></h2><?php endif; ?>
-							<?php if ( $author_bio ) : ?><span class="post__author-position post__details-description"><?php echo esc_html( wp_trim_words( $author_bio, 12 ) ); ?></span><?php endif; ?>
+							<h2 class="h3 post__author-name post__details-title">
+								<?php if ( $author_linkedin ) : ?>
+									<a href="<?php echo esc_url( $author_linkedin['url'] ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html( $author_name ); ?><?php if ( ! empty( $author_linkedin['icon'] ) ) : ?><span class="icon" style="mask-image: url('<?php echo esc_url( wp_get_attachment_image_url( (int) $author_linkedin['icon'], 'full' ) ); ?>');"></span><?php endif; ?></a>
+								<?php else : ?><?php echo esc_html( $author_name ); ?><?php endif; ?>
+							</h2>
+							<?php if ( $author_position ) : ?><span class="post__author-position post__details-description"><?php echo esc_html( $author_position ); ?></span><?php endif; ?>
 						</div>
 					</div>
+					<?php endif; ?>
 					<div class="post__details-item post__details-col post__date">
 						<time class="post__date-title post__details-title" datetime="<?php echo esc_attr( get_the_date( DATE_W3C, $post_id ) ); ?>"><?php echo esc_html( $published_date ); ?></time>
 						<span class="post__date-status post__details-description"><?php echo esc_html( sprintf( __( 'Published · Updated %s', 'velstadt' ), $modified_date ) ); ?></span>
@@ -66,18 +79,13 @@ $related        = velstadt_post_related_posts( $post_id, 3 );
 
 	<div class="record"><div class="container section__header-record section__lines"></div></div>
 
-	<div class="container post__container section__lines<?php echo $toc ? '' : ' post__container--wide'; ?>">
+	<div class="container post__container section__lines">
 		<article class="post__content">
 			<?php echo $prepared['content']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			<?php wp_link_pages( array( 'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'velstadt' ), 'after' => '</div>' ) ); ?>
+			<?php get_template_part( 'template-parts/post/author', null, array( 'post_id' => $post_id, 'author_id' => $author_id ) ); ?>
 		</article>
-		<?php if ( $toc ) : ?>
-			<aside class="post__sidebar">
-				<nav class="toc" aria-label="<?php esc_attr_e( 'Table of contents', 'velstadt' ); ?>"><ul>
-					<?php foreach ( $toc as $item ) : ?><li><a href="#<?php echo esc_attr( $item['id'] ); ?>"><?php echo esc_html( $item['label'] ); ?></a></li><?php endforeach; ?>
-				</ul></nav>
-			</aside>
-		<?php endif; ?>
+		<?php get_template_part( 'template-parts/post/sidebar', null, array( 'toc' => $toc, 'post_id' => $post_id ) ); ?>
 	</div>
 </main>
 

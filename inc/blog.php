@@ -6,16 +6,61 @@
  */
 
 /**
- * Estimate the reading time for a post.
+ * Return a manual reading time or estimate it from rendered article blocks.
  *
  * @param int $post_id Post ID.
  * @return int
  */
 function velstadt_blog_reading_time( $post_id ) {
-	$content = wp_strip_all_tags( (string) get_post_field( 'post_content', $post_id ) );
-	$words   = preg_split( '/\s+/u', trim( $content ), -1, PREG_SPLIT_NO_EMPTY );
+	$manual = function_exists( 'get_field' ) ? (int) get_field( 'post_reading_time', $post_id, false ) : 0;
+	if ( $manual > 0 ) {
+		return $manual;
+	}
+	$article = get_post( $post_id );
+	if ( ! $article ) {
+		return 1;
+	}
 
-	return max( 1, (int) ceil( count( $words ) / 200 ) );
+	static $cache = array();
+	static $calculating = array();
+	$key = $article->ID . ':' . md5( $article->post_content );
+	if ( isset( $cache[ $key ] ) ) {
+		return $cache[ $key ];
+	}
+	if ( isset( $calculating[ $article->ID ] ) ) {
+		return 1;
+	}
+
+	// Rendering a card must not change the enclosing WordPress loop or author.
+	$global_names = array( 'post', 'id', 'authordata', 'currentday', 'currentmonth', 'page', 'pages', 'multipage', 'more', 'numpages' );
+	$saved_globals = array();
+	foreach ( $global_names as $name ) {
+		if ( array_key_exists( $name, $GLOBALS ) ) {
+			$saved_globals[ $name ] = $GLOBALS[ $name ];
+		}
+	}
+	$calculating[ $article->ID ] = true;
+	try {
+		$GLOBALS['post'] = $article;
+		$content = do_blocks( $article->post_content );
+	} finally {
+		foreach ( $global_names as $name ) {
+			if ( array_key_exists( $name, $saved_globals ) ) {
+				$GLOBALS[ $name ] = $saved_globals[ $name ];
+			} else {
+				unset( $GLOBALS[ $name ] );
+			}
+		}
+		unset( $calculating[ $article->ID ] );
+	}
+
+	// Keep adjacent paragraphs, table cells and captions from merging into words.
+	$content = preg_replace( '/<\/(?:p|div|h[1-6]|li|td|th|pre|blockquote|figcaption|figure|section)>|<br\b[^>]*>/i', ' $0 ', $content );
+	$text = html_entity_decode( wp_strip_all_tags( strip_shortcodes( $content ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+	$words = preg_split( '/[\s\p{Z}]+/u', trim( $text ), -1, PREG_SPLIT_NO_EMPTY );
+
+	$cache[ $key ] = max( 1, (int) ceil( count( (array) $words ) / 200 ) );
+	return $cache[ $key ];
 }
 
 /**
@@ -25,9 +70,36 @@ function velstadt_blog_reading_time( $post_id ) {
  * @return string
  */
 function velstadt_blog_author_name( $post_id ) {
-	$author_id = (int) get_post_field( 'post_author', $post_id );
+	$author_id = velstadt_blog_author_id( $post_id );
 
-	return (string) get_the_author_meta( 'display_name', $author_id );
+	return $author_id ? get_the_title( $author_id ) : '';
+}
+
+/** Resolve a published editorial author, then the shared default. */
+function velstadt_blog_author_id( $post_id ) {
+	if ( ! function_exists( 'get_field' ) ) {
+		return 0;
+	}
+	$author_id = (int) get_field( 'post_editorial_author', $post_id );
+	if ( $author_id && 'velstadt_author' === get_post_type( $author_id ) && 'publish' === get_post_status( $author_id ) ) {
+		return $author_id;
+	}
+	$author_id = (int) get_field( 'default_editorial_author', 'option' );
+	return $author_id && 'velstadt_author' === get_post_type( $author_id ) && 'publish' === get_post_status( $author_id ) ? $author_id : 0;
+}
+
+/** Render a Media Library avatar or initials using the caller's layout class. */
+function velstadt_blog_author_avatar( $post_id, $class ) {
+	$author_id = velstadt_blog_author_id( $post_id );
+	$name = $author_id ? get_the_title( $author_id ) : '';
+	$avatar = $author_id ? (int) get_field( 'author_avatar', $author_id ) : 0;
+	if ( $avatar ) {
+		$image = wp_get_attachment_image( $avatar, 'thumbnail', false, array( 'class' => $class, 'alt' => $name ) );
+		if ( $image ) {
+			return $image;
+		}
+	}
+	return $name ? '<span class="' . esc_attr( $class . ' author-initials' ) . '" aria-hidden="true">' . esc_html( velstadt_blog_author_initials( $name ) ) . '</span>' : '';
 }
 
 /**
@@ -60,7 +132,7 @@ function velstadt_blog_primary_category( $post_id ) {
 }
 
 /**
- * Extend the Blog archive search to post author display names.
+ * Extend the Blog archive search to the selected editorial author or default.
  *
  * @param string   $search Existing search SQL.
  * @param WP_Query $query  Current query.
@@ -74,6 +146,7 @@ function velstadt_blog_posts_search( $search, $query ) {
 	global $wpdb;
 
 	$like   = '%' . $wpdb->esc_like( trim( (string) $query->get( 's' ) ) ) . '%';
+	$default_author = function_exists( 'get_field' ) ? (int) get_field( 'default_editorial_author', 'option' ) : 0;
 	$search = $wpdb->prepare(
 		" AND (
 			{$wpdb->posts}.post_title LIKE %s
@@ -81,15 +154,27 @@ function velstadt_blog_posts_search( $search, $query ) {
 			OR {$wpdb->posts}.post_content LIKE %s
 			OR EXISTS (
 				SELECT 1
-				FROM {$wpdb->users}
-				WHERE {$wpdb->users}.ID = {$wpdb->posts}.post_author
-				AND {$wpdb->users}.display_name LIKE %s
+				FROM {$wpdb->posts} AS editorial_author
+				WHERE editorial_author.post_type = 'velstadt_author'
+				AND editorial_author.post_status = 'publish'
+				AND editorial_author.post_title LIKE %s
+				AND editorial_author.ID = COALESCE((
+					SELECT selected_author.ID
+					FROM {$wpdb->postmeta} AS author_meta
+					INNER JOIN {$wpdb->posts} AS selected_author ON selected_author.ID = CAST(author_meta.meta_value AS UNSIGNED)
+					WHERE author_meta.post_id = {$wpdb->posts}.ID
+					AND author_meta.meta_key = 'post_editorial_author'
+					AND selected_author.post_type = 'velstadt_author'
+					AND selected_author.post_status = 'publish'
+					LIMIT 1
+				), %d)
 			)
 		)",
 		$like,
 		$like,
 		$like,
-		$like
+		$like,
+		$default_author
 	);
 
 	if ( ! is_user_logged_in() ) {

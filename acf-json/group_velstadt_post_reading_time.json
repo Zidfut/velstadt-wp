@@ -1,0 +1,24 @@
+{
+    "key": "group_velstadt_post_reading_time",
+    "title": "Reading Time",
+    "fields": [
+        {
+            "key": "field_velstadt_post_reading_time",
+            "name": "post_reading_time",
+            "label": "Reading time (minutes)",
+            "type": "number",
+            "required": 0,
+            "default_value": "",
+            "min": 1,
+            "step": 1,
+            "append": "min",
+            "placeholder": "Automatic",
+            "instructions": "Leave empty to calculate automatically from the article text, including custom blocks, at 200 words per minute. Enter a whole number to override the estimate everywhere this article is displayed."
+        }
+    ],
+    "location": [[{"param": "post_type", "operator": "==", "value": "post"}]],
+    "menu_order": 1,
+    "position": "side",
+    "style": "default",
+    "active": true
+}

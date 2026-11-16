@@ -1,0 +1,18 @@
+{
+    "key": "group_velstadt_post_block_media",
+    "title": "Post Block: Image / Gallery",
+    "fields": [
+        {"key": "field_velstadt_media_original_ratio", "name": "original_ratio", "label": "Keep original image proportions", "type": "true_false", "default_value": 0, "ui": 1, "instructions": "Off: images fill matching 8:5 frames, as in the design. On: the full image is displayed without cropping."},
+        {
+            "key": "field_velstadt_media_images", "name": "images", "label": "Images", "type": "repeater", "layout": "block", "min": 1, "max": 0, "button_label": "Add image",
+            "instructions": "One image fills the full width. Two or more images form a two-column gallery. Captions appear below each image. On mobile the gallery stacks into one column.",
+            "sub_fields": [
+                {"key": "field_velstadt_media_image", "name": "image", "label": "Image", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all", "required": 1, "parent_repeater": "field_velstadt_media_images", "instructions": "Choose from the Media Library. Alternative text is taken from the selected media item."},
+                {"key": "field_velstadt_media_caption", "name": "caption", "label": "Caption", "type": "textarea", "rows": 2, "new_lines": "", "parent_repeater": "field_velstadt_media_images", "instructions": "Optional text below this image. Leave empty to hide the caption."}
+            ]
+        }
+    ],
+    "location": [[{"param": "block", "operator": "==", "value": "acf/velstadt-media"}]],
+    "position": "normal", "style": "default", "active": true,
+    "modified": 1794856798
+}

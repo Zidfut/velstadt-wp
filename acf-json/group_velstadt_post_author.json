@@ -1,0 +1,14 @@
+{
+    "key": "group_velstadt_post_author",
+    "title": "Article Author",
+    "fields": [
+        {
+            "key": "field_velstadt_post_editorial_author", "name": "post_editorial_author", "label": "Author", "type": "post_object",
+            "post_type": ["velstadt_author"], "post_status": ["publish"], "return_format": "id", "multiple": 0, "allow_null": 1, "ui": 1,
+            "instructions": "Select the person or team credited for this article. Leave empty to use the default author from Options."
+        }
+    ],
+    "location": [[{"param": "post_type", "operator": "==", "value": "post"}]],
+    "position": "side", "style": "default", "active": true,
+    "modified": 1794850697
+}
