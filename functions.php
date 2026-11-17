@@ -184,6 +184,10 @@ function velstadt_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	if ( is_page_template( 'page-request-demo.php' ) ) {
+		wp_enqueue_script( 'velstadt-request-demo', get_template_directory_uri() . '/markup/js/request-demo.js', array( 'contact-form-7' ), $asset_version( '/markup/js/request-demo.js' ), true );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'velstadt_scripts' );
 
@@ -204,6 +208,29 @@ function velstadt_disable_cf7_form_autop( $autop, $options ) {
 	return false;
 }
 add_filter( 'wpcf7_autop_or_not', 'velstadt_disable_cf7_form_autop', 10, 2 );
+
+/** Require a work email for the demo form, as shown in its error state. */
+function velstadt_validate_demo_work_email( $result, $tag ) {
+	if ( 'demo-email' !== $tag->name ) {
+		return $result;
+	}
+
+	$submission = WPCF7_Submission::get_instance();
+	$email = $submission ? $submission->get_posted_data( $tag->name ) : '';
+	if ( ! is_string( $email ) || ! is_email( $email ) ) {
+		return $result;
+	}
+
+	$domain = strtolower( substr( strrchr( $email, '@' ), 1 ) );
+	$personal_domains = array( 'gmail.com', 'googlemail.com', 'yahoo.com', 'yahoo.co.uk', 'hotmail.com', 'hotmail.co.uk', 'outlook.com', 'live.com', 'msn.com', 'icloud.com', 'me.com', 'aol.com', 'proton.me', 'protonmail.com', 'mail.com', 'gmx.com', 'gmx.de', 'ukr.net', 'i.ua', 'meta.ua' );
+	$personal_domains = apply_filters( 'velstadt_demo_personal_email_domains', $personal_domains );
+	if ( in_array( $domain, $personal_domains, true ) ) {
+		$result->invalidate( $tag, __( "Personal email addresses aren't accepted. Please use your work email.", 'velstadt' ) );
+	}
+
+	return $result;
+}
+add_filter( 'wpcf7_validate_email*', 'velstadt_validate_demo_work_email', 20, 2 );
 
 /**
  * Implement the Custom Header feature.

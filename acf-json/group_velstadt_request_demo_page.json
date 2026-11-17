@@ -1,0 +1,266 @@
+{
+    "key": "group_velstadt_request_demo_page",
+    "title": "Request a Demo Page",
+    "fields": [
+        {
+            "key": "field_velstadt_demo_tab_content",
+            "label": "Content",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_velstadt_demo_eyebrow",
+            "label": "Eyebrow",
+            "name": "demo_eyebrow",
+            "type": "text"
+        },
+        {
+            "key": "field_velstadt_demo_title",
+            "label": "Title",
+            "name": "demo_title",
+            "type": "text"
+        },
+        {
+            "key": "field_velstadt_demo_benefits_title",
+            "label": "Benefits title",
+            "name": "demo_benefits_title",
+            "type": "text"
+        },
+        {
+            "key": "field_velstadt_demo_benefits",
+            "label": "Benefits",
+            "name": "demo_benefits",
+            "type": "repeater",
+            "layout": "block",
+            "button_label": "Add benefit",
+            "collapsed": "field_velstadt_demo_benefit_title",
+            "sub_fields": [
+                {
+                    "key": "field_velstadt_demo_benefit_title",
+                    "label": "Title",
+                    "name": "title",
+                    "type": "text"
+                },
+                {
+                    "key": "field_velstadt_demo_benefit_description",
+                    "label": "Description",
+                    "name": "description",
+                    "type": "textarea",
+                    "rows": 2,
+                    "new_lines": ""
+                }
+            ]
+        },
+        {
+            "key": "field_velstadt_demo_tab_social_proof",
+            "label": "Social proof",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_velstadt_demo_ratings",
+            "label": "Ratings",
+            "name": "demo_ratings",
+            "type": "repeater",
+            "layout": "row",
+            "button_label": "Add rating",
+            "sub_fields": [
+                {
+                    "key": "field_velstadt_demo_rating_logo",
+                    "label": "Logo",
+                    "name": "logo",
+                    "type": "image",
+                    "return_format": "id",
+                    "preview_size": "thumbnail",
+                    "library": "all"
+                },
+                {
+                    "key": "field_velstadt_demo_rating_name",
+                    "label": "Name",
+                    "name": "name",
+                    "type": "text"
+                },
+                {
+                    "key": "field_velstadt_demo_rating_value",
+                    "label": "Rating",
+                    "name": "value",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "key": "field_velstadt_demo_badges",
+            "label": "Badges",
+            "name": "demo_badges",
+            "type": "repeater",
+            "layout": "table",
+            "button_label": "Add badge",
+            "sub_fields": [
+                {
+                    "key": "field_velstadt_demo_badge_image",
+                    "label": "Image",
+                    "name": "image",
+                    "type": "image",
+                    "return_format": "id",
+                    "preview_size": "thumbnail",
+                    "library": "all"
+                }
+            ]
+        },
+        {
+            "key": "field_velstadt_demo_tab_form",
+            "label": "Form",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_velstadt_demo_form_title",
+            "label": "Form title",
+            "name": "demo_form_title",
+            "type": "text"
+        },
+        {
+            "key": "field_velstadt_demo_form_shortcode",
+            "label": "Contact Form 7 shortcode",
+            "name": "demo_form_shortcode",
+            "type": "text",
+            "instructions": "Edit the form fields and email settings in Contact → Contact Forms."
+        },
+        {
+            "key": "field_velstadt_demo_success_title",
+            "label": "Success title",
+            "name": "demo_success_title",
+            "type": "text"
+        },
+        {
+            "key": "field_velstadt_demo_success_description",
+            "label": "Success description",
+            "name": "demo_success_description",
+            "type": "textarea",
+            "rows": 3,
+            "new_lines": "",
+            "instructions": "Use {email} for the submitted email address."
+        },
+        {
+            "key": "field_velstadt_demo_success_link",
+            "label": "Success link",
+            "name": "demo_success_link",
+            "type": "link",
+            "return_format": "array"
+        },
+        {
+            "key": "field_velstadt_demo_calendar_url",
+            "label": "Booking URL",
+            "name": "demo_calendar_url",
+            "type": "url",
+            "instructions": "Optional working Cal.com link. When set, the success screen includes a booking button."
+        },
+        {
+            "key": "field_velstadt_demo_calendar_label",
+            "label": "Booking button label",
+            "name": "demo_calendar_label",
+            "type": "text"
+        },
+        {
+            "key": "field_velstadt_demo_tab_images",
+            "label": "Images",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_velstadt_demo_logo",
+            "label": "Header logo",
+            "name": "demo_logo",
+            "type": "image",
+            "return_format": "id",
+            "preview_size": "thumbnail",
+            "library": "all"
+        },
+        {
+            "key": "field_velstadt_demo_eyebrow_icon",
+            "label": "Eyebrow icon",
+            "name": "demo_eyebrow_icon",
+            "type": "image",
+            "return_format": "id",
+            "preview_size": "thumbnail",
+            "library": "all"
+        },
+        {
+            "key": "field_velstadt_demo_check_icon",
+            "label": "Benefit check icon",
+            "name": "demo_check_icon",
+            "type": "image",
+            "return_format": "id",
+            "preview_size": "thumbnail",
+            "library": "all"
+        },
+        {
+            "key": "field_velstadt_demo_star_icon",
+            "label": "Rating star icon",
+            "name": "demo_star_icon",
+            "type": "image",
+            "return_format": "id",
+            "preview_size": "thumbnail",
+            "library": "all"
+        },
+        {
+            "key": "field_velstadt_demo_chevron_icon",
+            "label": "Country dropdown icon",
+            "name": "demo_chevron_icon",
+            "type": "image",
+            "return_format": "id",
+            "preview_size": "thumbnail",
+            "library": "all"
+        },
+        {
+            "key": "field_velstadt_demo_checkbox_icon",
+            "label": "Checkbox check icon",
+            "name": "demo_checkbox_icon",
+            "type": "image",
+            "return_format": "id",
+            "preview_size": "thumbnail",
+            "library": "all"
+        },
+        {
+            "key": "field_velstadt_demo_success_icon",
+            "label": "Success icon",
+            "name": "demo_success_icon",
+            "type": "image",
+            "return_format": "id",
+            "preview_size": "thumbnail",
+            "library": "all"
+        },
+        {
+            "key": "field_velstadt_demo_compliance_icon",
+            "label": "Compliance icon",
+            "name": "demo_compliance_icon",
+            "type": "image",
+            "return_format": "id",
+            "preview_size": "thumbnail",
+            "library": "all"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-request-demo.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "Request a demo landing page. Header and footer legal content reuse the site Options.",
+    "show_in_rest": 0,
+    "modified": 1794910985
+}

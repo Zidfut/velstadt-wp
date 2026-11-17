@@ -25,4 +25,4 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'velstadt' ); ?></a>
 
-	<?php get_template_part( 'template-parts/header/site', 'header' ); ?>
+	<?php get_template_part( is_page_template( 'page-request-demo.php' ) ? 'template-parts/demo/header' : 'template-parts/header/site-header' ); ?>

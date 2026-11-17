@@ -6,11 +6,11 @@
         { "key": "field_velstadt_keys_title", "label": "Title", "name": "title", "type": "text", "default_value": "Key Takeaways" },
         { "key": "field_velstadt_keys_cards", "label": "Cards", "name": "cards", "type": "repeater", "layout": "block", "button_label": "Add card", "sub_fields": [
             { "key": "field_velstadt_keys_card_icon", "label": "Icon", "name": "icon", "type": "image", "return_format": "id", "preview_size": "thumbnail", "library": "all", "parent_repeater": "field_velstadt_keys_cards" },
-            { "key": "field_velstadt_keys_card_danger", "label": "Danger style", "name": "danger", "type": "true_false", "default_value": 0, "ui": 1, "parent_repeater": "field_velstadt_keys_cards" },
+            { "key": "field_velstadt_keys_card_style", "label": "Style", "name": "style", "type": "select", "choices": { "default": "Default", "danger": "Danger", "success": "Success", "warning": "Warning" }, "default_value": "default", "return_format": "value", "instructions": "Choose the icon background color.", "parent_repeater": "field_velstadt_keys_cards" },
             { "key": "field_velstadt_keys_card_title", "label": "Title", "name": "title", "type": "text", "parent_repeater": "field_velstadt_keys_cards" },
             { "key": "field_velstadt_keys_card_content", "label": "Text", "name": "content", "type": "textarea", "rows": 3, "new_lines": "", "parent_repeater": "field_velstadt_keys_cards" }
         ] }
     ],
     "location": [[{ "param": "block", "operator": "==", "value": "acf/velstadt-key-takeaways" }]],
-    "menu_order": 0, "position": "normal", "style": "default", "label_placement": "top", "instruction_placement": "label", "active": true, "show_in_rest": 0, "modified": 1794723001
+    "menu_order": 0, "position": "normal", "style": "default", "label_placement": "top", "instruction_placement": "label", "active": true, "show_in_rest": 0, "modified": 1794903508
 }

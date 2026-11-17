@@ -11,7 +11,7 @@
 
 ?>
 
-	<?php get_template_part( 'template-parts/footer/site', 'footer' ); ?>
+	<?php get_template_part( is_page_template( 'page-request-demo.php' ) ? 'template-parts/demo/footer' : 'template-parts/footer/site-footer' ); ?>
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
