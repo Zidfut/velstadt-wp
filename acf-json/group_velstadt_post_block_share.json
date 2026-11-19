@@ -2,26 +2,127 @@
     "key": "group_velstadt_post_block_share",
     "title": "Post Block: Share / CTA",
     "fields": [
-        {"key": "field_velstadt_share_background", "name": "background", "label": "Background", "type": "select", "choices": {"dark": "Dark", "light": "Light"}, "default_value": "dark", "return_format": "value"},
-        {"key": "field_velstadt_share_variant", "name": "variant", "label": "Content", "type": "select", "choices": {"socials": "Share buttons", "button": "CTA button"}, "default_value": "socials", "return_format": "value"},
-        {"key": "field_velstadt_share_subtitle", "name": "subtitle", "label": "Subtitle", "type": "text"},
-        {"key": "field_velstadt_share_title", "name": "title", "label": "Title", "type": "text"},
-        {"key": "field_velstadt_share_description", "name": "description", "label": "Description", "type": "textarea", "rows": 3, "new_lines": ""},
         {
-            "key": "field_velstadt_share_button", "name": "button", "label": "Button", "type": "link", "return_format": "array",
-            "conditional_logic": [[{"field": "field_velstadt_share_variant", "operator": "==", "value": "button"}]],
+            "key": "field_velstadt_share_background",
+            "name": "background",
+            "label": "Background",
+            "type": "select",
+            "choices": {
+                "dark": "Dark",
+                "light": "Light"
+            },
+            "default_value": "dark",
+            "return_format": "value"
+        },
+        {
+            "key": "field_velstadt_share_variant",
+            "name": "variant",
+            "label": "Content",
+            "type": "select",
+            "choices": {
+                "socials": "Share buttons",
+                "button": "CTA button"
+            },
+            "default_value": "socials",
+            "return_format": "value"
+        },
+        {
+            "key": "field_velstadt_share_subtitle",
+            "name": "subtitle",
+            "label": "Subtitle",
+            "type": "text"
+        },
+        {
+            "key": "field_velstadt_share_title",
+            "name": "title",
+            "label": "Title",
+            "type": "text",
+            "instructions": "Use {title} to insert the current article title automatically."
+        },
+        {
+            "key": "field_velstadt_share_description",
+            "name": "description",
+            "label": "Description",
+            "type": "textarea",
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_velstadt_share_button",
+            "name": "button",
+            "label": "Button",
+            "type": "link",
+            "return_format": "array",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_velstadt_share_variant",
+                        "operator": "==",
+                        "value": "button"
+                    }
+                ]
+            ],
             "instructions": "Uses the transparent button on a dark background and the primary button on a light background."
         },
         {
-            "key": "field_velstadt_share_socials", "name": "socials", "label": "Share buttons", "type": "repeater", "layout": "row", "button_label": "Add share button",
-            "conditional_logic": [[{"field": "field_velstadt_share_variant", "operator": "==", "value": "socials"}]],
+            "key": "field_velstadt_share_socials",
+            "name": "socials",
+            "label": "Share buttons",
+            "type": "repeater",
+            "layout": "row",
+            "button_label": "Add share button",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_velstadt_share_variant",
+                        "operator": "==",
+                        "value": "socials"
+                    }
+                ]
+            ],
             "instructions": "Links are generated from the current article. Select each icon from the Media Library.",
             "sub_fields": [
-                {"key": "field_velstadt_share_social_network", "name": "network", "label": "Action", "type": "select", "choices": {"copy": "Copy link", "email": "Email", "linkedin": "LinkedIn", "x": "X", "facebook": "Facebook"}, "return_format": "value", "default_value": "copy", "parent_repeater": "field_velstadt_share_socials"},
-                {"key": "field_velstadt_share_social_icon", "name": "icon", "label": "Icon", "type": "image", "return_format": "id", "preview_size": "thumbnail", "library": "all", "required": 1, "parent_repeater": "field_velstadt_share_socials"}
+                {
+                    "key": "field_velstadt_share_social_network",
+                    "name": "network",
+                    "label": "Action",
+                    "type": "select",
+                    "choices": {
+                        "copy": "Copy link",
+                        "email": "Email",
+                        "linkedin": "LinkedIn",
+                        "x": "X",
+                        "facebook": "Facebook"
+                    },
+                    "return_format": "value",
+                    "default_value": "copy",
+                    "parent_repeater": "field_velstadt_share_socials"
+                },
+                {
+                    "key": "field_velstadt_share_social_icon",
+                    "name": "icon",
+                    "label": "Icon",
+                    "type": "image",
+                    "return_format": "id",
+                    "preview_size": "thumbnail",
+                    "library": "all",
+                    "required": 1,
+                    "parent_repeater": "field_velstadt_share_socials"
+                }
             ]
         }
     ],
-    "location": [[{"param": "block", "operator": "==", "value": "acf/velstadt-share"}]],
-    "position": "normal", "style": "default", "active": true
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/velstadt-share"
+            }
+        ]
+    ],
+    "position": "normal",
+    "style": "default",
+    "active": true,
+    "modified": 1795098738
 }

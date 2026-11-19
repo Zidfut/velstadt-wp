@@ -5913,6 +5913,517 @@ body {
     }
 }
 
+.ransomware__page {
+    font-family: var(--font-family);
+
+    .ransomware__hero {
+        border-bottom: 1px solid var(--gray-100);
+
+        .ransomware__hero-container {
+            padding-block: 128px 64px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 24px;
+
+            @media(width <= 1200px) {
+                padding-block: 104px 48px;
+            }
+
+            @media(width <= 768px) {
+                padding-block: 64px 40px;
+            }
+        }
+
+        .ransomware__eyebrow {
+            margin-bottom: -8px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            color: var(--gray-500);
+        }
+
+        h1 {
+            width: 100%;
+            max-width: 520px;
+            margin: 0;
+            font-size: 40px;
+            font-weight: 500;
+            line-height: 48px;
+            color: var(--gray-900);
+
+            @media(width <= 768px) {
+                font-size: 32px;
+                line-height: 40px;
+            }
+        }
+
+        p {
+            max-width: 768px;
+            margin: 0;
+            font-size: 16px;
+            line-height: 24px;
+            color: var(--gray-500);
+        }
+    }
+
+    .ransomware__library {
+        .ransomware__library-container {
+            padding-block: 64px 96px;
+
+            @media(width <= 768px) {
+                padding-block: 40px 64px;
+            }
+        }
+
+        .ransomware__filters {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .ransomware__search {
+            width: min(100%, 400px);
+            padding-top: 8px;
+            position: relative;
+
+            label {
+                position: absolute;
+                top: 8px;
+                left: 16px;
+                transform: translateY(-50%);
+                padding-inline: 4px;
+                background: var(--background);
+                font-size: 12px;
+                line-height: 16px;
+                color: var(--gray-500);
+            }
+        }
+
+        .ransomware__search-control {
+            height: 48px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-inline: 20px;
+            border: 1px solid var(--gray-150);
+            border-radius: 99px;
+            transition: border-color .2s, box-shadow .2s;
+
+            &:focus-within {
+                border-color: var(--primary-100);
+                box-shadow: 0 0 0 2px var(--primary-200);
+            }
+
+            button {
+                width: 16px;
+                height: 16px;
+                flex-shrink: 0;
+                display: flex;
+                align-items: center;
+                padding: 0;
+                border: 0;
+                background: transparent;
+                cursor: pointer;
+            }
+
+            img {
+                width: 16px;
+                height: 16px;
+            }
+
+            input {
+                width: 100%;
+                min-width: 0;
+                height: 100%;
+                padding: 0;
+                border: 0;
+                outline: 0;
+                background: transparent;
+                font-family: var(--font-family);
+                font-size: 14px;
+                line-height: 20px;
+                color: var(--gray-900);
+
+                &::placeholder {
+                    color: var(--gray-300);
+                    opacity: 1;
+                }
+            }
+        }
+
+        .ransomware__categories {
+            width: 100%;
+            overflow-x: auto;
+            scrollbar-width: thin;
+
+            ul {
+                display: flex;
+                width: max-content;
+                max-width: none;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            a {
+                display: block;
+                padding: 9px 19px;
+                border: 1px solid transparent;
+                border-radius: 99px;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 20px;
+                color: var(--gray-500);
+                text-decoration: none;
+                white-space: nowrap;
+                transition: background .2s, color .2s;
+
+                &[aria-current] {
+                    border-color: var(--gray-200);
+                    color: var(--gray-900);
+                }
+
+                @media(hover: hover) {
+                    &:hover {
+                        color: var(--primary-500);
+                    }
+
+                    &[aria-current]:hover {
+                        color: var(--gray-900);
+                    }
+                }
+            }
+        }
+
+        .ransomware__grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+
+            @media(width <= 1024px) {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            @media(width <= 640px) {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .ransomware__card {
+            min-width: 0;
+            min-height: 272px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            outline: 1px solid var(--gray-100);
+            outline-offset: -1px;
+            border-radius: 24px;
+            background: var(--background);
+            transition: outline-color .2s, background .2s;
+
+            @media(hover: hover) {
+                &:hover {
+                    outline-color: var(--primary-200);
+                }
+            }
+
+            &:focus-within {
+                outline-color: var(--primary-400);
+            }
+        }
+
+        .ransomware__card-top {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+            padding-bottom: 24px;
+            box-shadow: inset 0 -1px var(--gray-100);
+        }
+
+        .ransomware__badge-wrap {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+        }
+
+        .ransomware__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            background: var(--gray-50);
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 16px;
+            color: var(--gray-600);
+
+            &.ransomware__badge--available {
+                background: var(--green-50);
+                color: var(--green-500);
+            }
+
+            img {
+                width: 12px;
+                height: 12px;
+                flex-shrink: 0;
+            }
+        }
+
+        .ransomware__card-text {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            h2 {
+                margin: 0;
+                font-size: 24px;
+                font-weight: 500;
+                line-height: 32px;
+                color: var(--gray-900);
+            }
+
+            p {
+                margin: 0;
+                font-size: 14px;
+                line-height: 20px;
+                color: var(--gray-500);
+            }
+        }
+
+        .ransomware__tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+                padding: 2px 12px;
+                border-radius: 9999px;
+                background: var(--gray-50);
+                font-size: 12px;
+                font-weight: 500;
+                line-height: 16px;
+                color: var(--gray-600);
+            }
+        }
+
+        .ransomware__card-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            color: var(--gray-900);
+            text-decoration: none;
+
+            img {
+                width: 20px;
+                height: 20px;
+                flex-shrink: 0;
+                transition: transform .3s;
+            }
+
+            @media(hover: hover) {
+                &:hover img {
+                    transform: translate(2px, -2px);
+                }
+            }
+        }
+
+        .ransomware__more {
+            display: flex;
+            justify-content: center;
+            padding-top: 48px;
+
+            a[aria-disabled] {
+                opacity: .5;
+                cursor: wait;
+            }
+        }
+
+        .ransomware__empty {
+            margin: 0;
+            padding-block: 32px;
+            color: var(--gray-500);
+        }
+
+        .ransomware__status {
+            margin: 16px 0 0;
+            font-size: 14px;
+            line-height: 20px;
+            color: var(--gray-500);
+
+            &:empty {
+                margin: 0;
+            }
+        }
+    }
+
+    .ransomware__cta {
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+        background: #12101e;
+
+        &::before, &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            aspect-ratio: 1440 / 528;
+            pointer-events: none;
+            transform-origin: 0 0;
+        }
+
+        &::before {
+            left: 65.542766%;
+            top: 100%;
+            background: radial-gradient(ellipse closest-side, #0089ca 0%, rgb(0 137 202 / 0) 100%);
+            transform: matrix(-.5450034, -.39946485, 1.06534077, -1.52000925, 0, 0) translate(-50%, -50%);
+        }
+
+        &::after {
+            left: 100%;
+            top: 0;
+            background: radial-gradient(ellipse closest-side, #6d4aff 0%, rgb(109 74 255 / 0) 100%);
+            transform: matrix(-.8489329, .50122326, -1.33672257, -2.36766598, 0, 0) translate(-50%, -50%);
+        }
+
+        .ransomware__cta-container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            padding-block: 64px;
+            border-color: rgb(255 255 255 / .1);
+
+            @media(width <= 768px) {
+                padding-block: 40px;
+            }
+        }
+
+        .ransomware__cta-intro {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            align-items: end;
+            gap: 24px;
+            width: 100%;
+
+            @media(width <= 768px) {
+                grid-template-columns: 1fr;
+            }
+
+            & > p {
+                padding-block: 4px;
+            }
+        }
+
+        .ransomware__cta-heading {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            span {
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 20px;
+                color: var(--primary-400);
+            }
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 40px;
+            font-weight: 500;
+            line-height: 48px;
+            color: var(--white);
+
+            @media(width <= 768px) {
+                font-size: 32px;
+                line-height: 40px;
+            }
+        }
+
+        p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 24px;
+            color: var(--gray-300);
+        }
+
+        .ransomware__cta-cards {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+            width: 100%;
+
+            @media(width <= 768px) {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .ransomware__cta-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 32px;
+            padding: 40px 24px;
+            outline: 1px solid rgb(255 255 255 / .3);
+            border-radius: 24px;
+            background: rgb(215 212 255 / .05);
+
+            h3 {
+                margin: 0 0 12px;
+                font-size: 24px;
+                font-weight: 500;
+                line-height: 32px;
+                color: var(--white);
+            }
+
+            ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            li {
+                padding: 7px 11px;
+                border: 1px solid rgb(255 255 255 / .1);
+                border-radius: 9999px;
+                background: rgb(215 212 255 / .05);
+                font-size: 12px;
+                font-weight: 500;
+                line-height: 16px;
+                color: var(--white);
+            }
+        }
+    }
+
+    :is(a, button):focus-visible {
+        outline: 2px solid var(--primary-500);
+        outline-offset: 4px;
+    }
+
+    @media(prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            transition: none !important;
+        }
+    }
+}
+
 .page {
 
     .section__header-container {
@@ -6046,7 +6557,7 @@ body {
             }
         }
 
-        a {
+        a:not([class]) {
             color: var(--primary-500);
             text-underline-offset: 3px;
         }
@@ -7452,7 +7963,93 @@ body {
 .post {
     border-bottom: 1px solid var(--gray-100);
 
-    .section__header {
+    .ransomware__facts {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        width: 100%;
+        overflow: hidden;
+
+        .ransomware__facts-title {
+            margin: 0;
+            font-family: var(--font-family);
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 32px;
+            color: var(--gray-900);
+        }
+
+        .ransomware__facts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            width: 100%;
+            margin: 0;
+
+            @media(width <= 576px) {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .ransomware__fact {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            min-width: 0;
+            min-height: 120px;
+            padding: 24px;
+            border: 1px solid var(--gray-100);
+            border-radius: 16px;
+            background: var(--gray-50);
+            overflow: hidden;
+            overflow-wrap: anywhere;
+
+            dt {
+                margin: 0;
+                font-family: var(--font-family);
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 20px;
+                color: var(--gray-500);
+            }
+
+            dd {
+                width: 100%;
+                margin: 0;
+                font-family: var(--font-family);
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 24px;
+                color: var(--gray-900);
+            }
+        }
+    }
+
+    .post__content > .ransomware__facts + * {
+        margin-top: 64px;
+
+        @media(width <= 768px) {
+            margin-top: 40px;
+        }
+    }
+
+    .ransomware__header {
+        .section__header-info {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 24px 48px;
+        }
+
+        .ransomware__date {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+    }
+
+    .section__header:where(:not(.ransomware__header)) {
 
         .section__header-container {
             display: grid;

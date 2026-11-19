@@ -188,6 +188,9 @@ function velstadt_scripts() {
 	if ( is_page_template( 'page-request-demo.php' ) ) {
 		wp_enqueue_script( 'velstadt-request-demo', get_template_directory_uri() . '/markup/js/request-demo.js', array( 'contact-form-7' ), $asset_version( '/markup/js/request-demo.js' ), true );
 	}
+	if ( is_page_template( 'page-ransomware.php' ) ) {
+		wp_enqueue_script( 'velstadt-ransomware', get_template_directory_uri() . '/markup/js/ransomware.js', array(), $asset_version( '/markup/js/ransomware.js' ), true );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'velstadt_scripts' );
 
@@ -271,6 +274,9 @@ require get_template_directory() . '/inc/awards.php';
  * Blog archive helpers.
  */
 require get_template_directory() . '/inc/blog.php';
+
+/** Ransomware catalog queries. */
+require get_template_directory() . '/inc/ransomware.php';
 
 /**
  * Single post helpers and editorial blocks.

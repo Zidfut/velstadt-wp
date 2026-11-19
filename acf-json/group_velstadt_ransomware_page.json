@@ -1,0 +1,147 @@
+{
+    "key": "group_velstadt_ransomware_page",
+    "title": "Ransomware Encyclopedia Page",
+    "fields": [
+        {
+            "key": "field_velstadt_ransomware_catalog_tab",
+            "name": "",
+            "label": "Catalog",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_velstadt_ransomware_eyebrow",
+            "name": "ransomware_eyebrow",
+            "label": "Eyebrow",
+            "type": "text"
+        },
+        {
+            "key": "field_velstadt_ransomware_title",
+            "name": "ransomware_title",
+            "label": "Heading",
+            "type": "text"
+        },
+        {
+            "key": "field_velstadt_ransomware_catalog_description",
+            "name": "ransomware_catalog_description",
+            "label": "Description",
+            "type": "textarea",
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_velstadt_ransomware_search_placeholder",
+            "name": "ransomware_search_placeholder",
+            "label": "Search placeholder",
+            "type": "text"
+        },
+        {
+            "key": "field_velstadt_ransomware_all_label",
+            "name": "ransomware_all_label",
+            "label": "All categories label",
+            "type": "text"
+        },
+        {
+            "key": "field_velstadt_ransomware_load_more_label",
+            "name": "ransomware_load_more_label",
+            "label": "Load more label",
+            "type": "text"
+        },
+        {
+            "key": "field_velstadt_ransomware_empty_message",
+            "name": "ransomware_empty_message",
+            "label": "No results message",
+            "type": "text"
+        },
+        {
+            "key": "field_velstadt_ransomware_posts_per_page",
+            "name": "ransomware_posts_per_page",
+            "label": "Profiles per batch",
+            "type": "number",
+            "default_value": 15,
+            "min": 1,
+            "max": 60,
+            "step": 1
+        },
+        {
+            "key": "field_velstadt_ransomware_cta_tab",
+            "name": "",
+            "label": "CTA",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_velstadt_ransomware_cta_eyebrow",
+            "name": "ransomware_cta_eyebrow",
+            "label": "CTA eyebrow",
+            "type": "text"
+        },
+        {
+            "key": "field_velstadt_ransomware_cta_title",
+            "name": "ransomware_cta_title",
+            "label": "CTA heading",
+            "type": "text"
+        },
+        {
+            "key": "field_velstadt_ransomware_cta_description",
+            "name": "ransomware_cta_description",
+            "label": "CTA description",
+            "type": "textarea",
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_velstadt_ransomware_cta_cards",
+            "name": "ransomware_cta_cards",
+            "label": "CTA cards",
+            "type": "repeater",
+            "layout": "block",
+            "button_label": "Add card",
+            "sub_fields": [
+                {
+                    "key": "field_velstadt_ransomware_cta_card_title",
+                    "name": "title",
+                    "label": "Title",
+                    "type": "text"
+                },
+                {
+                    "key": "field_velstadt_ransomware_cta_card_description",
+                    "name": "description",
+                    "label": "Description",
+                    "type": "textarea",
+                    "rows": 2,
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_velstadt_ransomware_cta_card_tags",
+                    "name": "tags",
+                    "label": "Tags",
+                    "type": "repeater",
+                    "layout": "table",
+                    "button_label": "Add tag",
+                    "sub_fields": [
+                        {
+                            "key": "field_velstadt_ransomware_cta_card_tag",
+                            "name": "text",
+                            "label": "Text",
+                            "type": "text"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-ransomware.php"
+            }
+        ]
+    ],
+    "position": "normal",
+    "style": "default",
+    "active": true,
+    "modified": 1795111628
+}

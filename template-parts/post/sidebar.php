@@ -1,5 +1,5 @@
 <?php
-/** Shared sidebar with current post data. @package Velstadt */
+/** Blog sidebar with current post data. @package Velstadt */
 $toc = isset( $args['toc'] ) ? $args['toc'] : array();
 $post_id = (int) $args['post_id'];
 $categories = get_the_category( $post_id );

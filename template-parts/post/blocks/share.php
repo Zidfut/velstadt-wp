@@ -15,6 +15,7 @@ $article_id = isset( $post_id ) && is_numeric( $post_id ) ? (int) $post_id : get
 $article_id = wp_is_post_revision( $article_id ) ?: $article_id;
 $url = get_permalink( $article_id );
 $article_title = get_the_title( $article_id );
+$title = str_replace( '{title}', $article_title, (string) $title );
 $share_urls = array(
 	'copy' => $url,
 	'email' => 'mailto:?subject=' . rawurlencode( $article_title ) . '&body=' . rawurlencode( $url ),

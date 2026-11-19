@@ -89,7 +89,7 @@ $related        = velstadt_post_related_posts( $post_id, 3 );
 	</div>
 </main>
 
-<?php if ( $related->have_posts() ) : ?>
+<?php if ( $related && $related->have_posts() ) : ?>
 	<section class="section resources related__posts">
 		<div class="section__header"><div class="container section__header-container section__lines">
 			<div class="section__header-left"><span class="h3 section__subtitle"><?php esc_html_e( 'Related posts', 'velstadt' ); ?></span><h2 class="h2 section__title"><?php esc_html_e( 'Continue exploring', 'velstadt' ); ?></h2></div>

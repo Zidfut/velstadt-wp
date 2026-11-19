@@ -70,7 +70,7 @@ function velstadt_register_post_blocks() {
 				'category'        => 'velstadt-post',
 				'icon'            => $settings['icon'],
 				'mode'            => 'preview',
-				'post_types'      => array( 'post' ),
+				'post_types'      => in_array( $slug, array( 'faq', 'share' ), true ) ? array( 'post', 'velstadt_ransomware' ) : array( 'post' ),
 				'render_template' => get_theme_file_path( '/template-parts/post/blocks/' . $slug . '.php' ),
 				'supports'        => array( 'align' => false, 'anchor' => true, 'jsx' => true ),
 			)

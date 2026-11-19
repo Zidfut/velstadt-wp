@@ -1,0 +1,120 @@
+{
+    "key": "group_velstadt_ransomware_profile",
+    "title": "Ransomware Profile",
+    "fields": [
+        {
+            "key": "field_velstadt_ransomware_card_description",
+            "name": "ransomware_card_description",
+            "label": "Card description",
+            "type": "textarea",
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_velstadt_ransomware_description",
+            "name": "ransomware_description",
+            "label": "Profile introduction",
+            "type": "textarea",
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_velstadt_ransomware_decryptor_status",
+            "name": "ransomware_decryptor_status",
+            "label": "Decryptor status",
+            "type": "select",
+            "choices": {
+                "available": "Decryptor available",
+                "unavailable": "No public decryptor",
+                "not_reviewed": "Status not reviewed"
+            },
+            "default_value": "not_reviewed",
+            "return_format": "value",
+            "ui": 1,
+            "required": 1
+        },
+        {
+            "key": "field_velstadt_ransomware_tags",
+            "name": "ransomware_tags",
+            "label": "Card tags",
+            "type": "repeater",
+            "layout": "table",
+            "button_label": "Add tag",
+            "sub_fields": [
+                {
+                    "key": "field_velstadt_ransomware_tag_text",
+                    "name": "text",
+                    "label": "Text",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "key": "field_velstadt_ransomware_published_date",
+            "name": "ransomware_published_date",
+            "label": "Published date",
+            "type": "date_picker",
+            "display_format": "F j, Y",
+            "return_format": "Y-m-d",
+            "instructions": "Leave blank to use the WordPress publication date."
+        },
+        {
+            "key": "field_velstadt_ransomware_updated_date",
+            "name": "ransomware_updated_date",
+            "label": "Last updated date",
+            "type": "date_picker",
+            "display_format": "F j, Y",
+            "return_format": "Y-m-d",
+            "instructions": "Leave blank to use the WordPress modified date."
+        },
+        {
+            "key": "field_velstadt_ransomware_facts_tab",
+            "name": "",
+            "label": "Key facts",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_velstadt_ransomware_facts_title",
+            "name": "ransomware_facts_title",
+            "label": "Heading",
+            "type": "text",
+            "default_value": "Key facts"
+        },
+        {
+            "key": "field_velstadt_ransomware_facts",
+            "name": "ransomware_facts",
+            "label": "Facts",
+            "type": "repeater",
+            "layout": "table",
+            "button_label": "Add fact",
+            "sub_fields": [
+                {
+                    "key": "field_velstadt_ransomware_fact_label",
+                    "name": "label",
+                    "label": "Label",
+                    "type": "text"
+                },
+                {
+                    "key": "field_velstadt_ransomware_fact_value",
+                    "name": "value",
+                    "label": "Value",
+                    "type": "text"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "velstadt_ransomware"
+            }
+        ]
+    ],
+    "position": "normal",
+    "style": "default",
+    "active": true,
+    "modified": 1795098738
+}

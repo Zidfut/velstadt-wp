@@ -1,0 +1,33 @@
+{
+    "key": "taxonomy_ransomware_category",
+    "title": "Ransomware Categories",
+    "active": true,
+    "taxonomy": "ransomware_category",
+    "object_type": [
+        "velstadt_ransomware"
+    ],
+    "advanced_configuration": true,
+    "labels": {
+        "name": "Ransomware Categories",
+        "singular_name": "Ransomware Category",
+        "menu_name": "Categories",
+        "all_items": "All Categories",
+        "edit_item": "Edit Category",
+        "add_new_item": "Add New Category"
+    },
+    "public": false,
+    "publicly_queryable": false,
+    "hierarchical": true,
+    "show_ui": true,
+    "show_in_menu": true,
+    "show_in_nav_menus": false,
+    "show_tagcloud": false,
+    "show_in_quick_edit": true,
+    "show_admin_column": true,
+    "show_in_rest": true,
+    "rewrite": {
+        "permalink_rewrite": "no_permalink"
+    },
+    "query_var": "none",
+    "modified": 1795086493
+}
