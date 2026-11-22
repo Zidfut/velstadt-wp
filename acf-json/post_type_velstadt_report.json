@@ -1,0 +1,48 @@
+{
+    "key": "post_type_velstadt_report",
+    "title": "Reports",
+    "active": true,
+    "post_type": "velstadt_report",
+    "advanced_configuration": true,
+    "labels": {
+        "name": "Reports",
+        "singular_name": "Report",
+        "menu_name": "Reports",
+        "all_items": "All Reports",
+        "add_new_item": "Add New Report",
+        "edit_item": "Edit Report",
+        "view_item": "View Report",
+        "search_items": "Search Reports"
+    },
+    "description": "Velstadt reports, research and downloadable publications.",
+    "public": true,
+    "publicly_queryable": true,
+    "exclude_from_search": false,
+    "show_ui": true,
+    "show_in_menu": true,
+    "show_in_rest": true,
+    "show_in_nav_menus": true,
+    "menu_icon": "dashicons-media-document",
+    "supports": [
+        "title",
+        "editor",
+        "thumbnail",
+        "excerpt",
+        "revisions"
+    ],
+    "taxonomies": [
+        "report_category"
+    ],
+    "has_archive": false,
+    "rewrite": {
+        "permalink_rewrite": "custom_permalink",
+        "slug": "reports",
+        "with_front": false,
+        "feeds": false,
+        "pages": true
+    },
+    "query_var": "post_type_key",
+    "delete_with_user": false,
+    "enter_title_here": "Report title",
+    "modified": 1795353669
+}

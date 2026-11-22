@@ -1,0 +1,79 @@
+{
+    "key": "group_velstadt_report_details",
+    "title": "Report Details",
+    "fields": [
+        {
+            "key": "field_velstadt_report_detail_headline",
+            "label": "Detail page headline",
+            "name": "report_detail_headline",
+            "type": "text",
+            "instructions": "Optional. Leave empty to use the report title."
+        },
+        {
+            "key": "field_velstadt_report_detail_intro",
+            "label": "Detail page introduction",
+            "name": "report_detail_intro",
+            "type": "textarea",
+            "rows": 3,
+            "new_lines": "",
+            "instructions": "Optional. Leave empty to use the report excerpt."
+        },
+        {
+            "key": "field_velstadt_report_detail_cover",
+            "label": "Detail page cover",
+            "name": "report_detail_cover",
+            "type": "image",
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "instructions": "Optional. Leave empty to use the featured image."
+        },
+        {
+            "key": "field_velstadt_report_page_count",
+            "label": "PDF page count",
+            "name": "report_page_count",
+            "type": "number",
+            "min": 1,
+            "step": 1
+        },
+        {
+            "key": "field_velstadt_report_audience",
+            "label": "Intended audience",
+            "name": "report_audience",
+            "type": "text"
+        },
+        {
+            "key": "field_velstadt_report_download_count",
+            "label": "Download count",
+            "name": "report_download_count",
+            "type": "number",
+            "instructions": "Optional editorial value. This field is not an automatic counter.",
+            "min": 0,
+            "step": 1
+        },
+        {
+            "key": "field_velstadt_report_form_shortcode",
+            "label": "Report request form",
+            "name": "report_form_shortcode",
+            "type": "text",
+            "instructions": "Paste a Contact Form 7 shortcode to show the request form in the sidebar."
+        },
+        {
+            "key": "field_velstadt_report_research_authors",
+            "label": "Research authors",
+            "name": "report_research_authors",
+            "type": "relationship",
+            "instructions": "Select and order the authors in the Prepared by section. Leave empty to hide it.",
+            "post_type": ["velstadt_author"],
+            "post_status": ["publish"],
+            "filters": ["search"],
+            "return_format": "id"
+        }
+    ],
+    "location": [[{ "param": "post_type", "operator": "==", "value": "velstadt_report" }]],
+    "position": "normal",
+    "style": "default",
+    "active": true,
+    "show_in_rest": false,
+    "modified": 1795392002
+}

@@ -44,6 +44,7 @@ function velstadt_register_post_blocks() {
 
 	$blocks = array(
 		'key-takeaways' => array( 'title' => __( 'Key Takeaways', 'velstadt' ), 'icon' => 'lightbulb' ),
+		'key-findings'  => array( 'title' => __( 'Key Findings', 'velstadt' ), 'icon' => 'list-view', 'post_types' => array( 'velstadt_report' ) ),
 		'details'       => array( 'title' => __( 'Details', 'velstadt' ), 'icon' => 'media-text' ),
 		'points'        => array( 'title' => __( 'Points', 'velstadt' ), 'icon' => 'grid-view' ),
 		'action-rows'   => array( 'title' => __( 'Action Rows', 'velstadt' ), 'icon' => 'editor-ol' ),
@@ -62,6 +63,13 @@ function velstadt_register_post_blocks() {
 
 	foreach ( $blocks as $slug => $settings ) {
 		$title = $settings['title'];
+		$post_types = $settings['post_types'] ?? array( 'post' );
+		if ( in_array( $slug, array( 'faq', 'share' ), true ) ) {
+			$post_types[] = 'velstadt_ransomware';
+		}
+		if ( in_array( $slug, array( 'key-takeaways', 'details', 'points', 'quote', 'metrics', 'download', 'share', 'table', 'media' ), true ) ) {
+			$post_types[] = 'velstadt_report';
+		}
 		acf_register_block_type(
 			array(
 				'name'            => 'velstadt-' . $slug,
@@ -70,7 +78,7 @@ function velstadt_register_post_blocks() {
 				'category'        => 'velstadt-post',
 				'icon'            => $settings['icon'],
 				'mode'            => 'preview',
-				'post_types'      => in_array( $slug, array( 'faq', 'share' ), true ) ? array( 'post', 'velstadt_ransomware' ) : array( 'post' ),
+				'post_types'      => $post_types,
 				'render_template' => get_theme_file_path( '/template-parts/post/blocks/' . $slug . '.php' ),
 				'supports'        => array( 'align' => false, 'anchor' => true, 'jsx' => true ),
 			)

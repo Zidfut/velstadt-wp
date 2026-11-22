@@ -1,0 +1,47 @@
+{
+    "key": "group_velstadt_report_block_key_findings",
+    "title": "Report Block: Key Findings",
+    "fields": [
+        {
+            "key": "field_velstadt_key_findings_heading",
+            "name": "heading",
+            "label": "Heading",
+            "type": "text",
+            "default_value": "Key findings"
+        },
+        {
+            "key": "field_velstadt_key_findings_items",
+            "name": "findings",
+            "label": "Findings",
+            "type": "repeater",
+            "layout": "block",
+            "button_label": "Add finding",
+            "sub_fields": [
+                {
+                    "key": "field_velstadt_key_findings_icon",
+                    "name": "icon",
+                    "label": "Icon",
+                    "type": "image",
+                    "return_format": "id",
+                    "preview_size": "thumbnail",
+                    "library": "all",
+                    "parent_repeater": "field_velstadt_key_findings_items"
+                },
+                {
+                    "key": "field_velstadt_key_findings_text",
+                    "name": "text",
+                    "label": "Finding",
+                    "type": "textarea",
+                    "rows": 2,
+                    "new_lines": "",
+                    "required": 1,
+                    "parent_repeater": "field_velstadt_key_findings_items"
+                }
+            ]
+        }
+    ],
+    "location": [[{ "param": "block", "operator": "==", "value": "acf/velstadt-key-findings" }]],
+    "position": "normal",
+    "style": "default",
+    "active": true
+}

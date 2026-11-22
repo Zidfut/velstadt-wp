@@ -1,0 +1,46 @@
+{
+    "key": "group_velstadt_reports_page",
+    "title": "Reports Page",
+    "fields": [
+        { "key": "field_velstadt_reports_hero_tab", "label": "Hero", "name": "", "type": "tab", "placement": "top" },
+        { "key": "field_velstadt_reports_hero_eyebrow", "label": "Eyebrow", "name": "reports_hero_eyebrow", "type": "text", "default_value": "Velstadt research" },
+        { "key": "field_velstadt_reports_hero_title", "label": "Heading", "name": "reports_hero_title", "type": "text", "default_value": "Reports & Research" },
+        { "key": "field_velstadt_reports_hero_description", "label": "Description", "name": "reports_hero_description", "type": "textarea", "rows": 3, "new_lines": "", "default_value": "Threat reports, industry benchmarks, and practical assessments for better security decisions." },
+
+        { "key": "field_velstadt_reports_catalog_tab", "label": "Catalog", "name": "", "type": "tab", "placement": "top" },
+        {
+            "key": "field_velstadt_reports_featured_report",
+            "label": "Featured report",
+            "name": "reports_featured_report",
+            "type": "post_object",
+            "instructions": "Displayed as the large horizontal card above the category filters and excluded from the catalog grid.",
+            "post_type": ["velstadt_report"],
+            "post_status": ["publish"],
+            "return_format": "id",
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 1
+        },
+        { "key": "field_velstadt_reports_all_label", "label": "All categories label", "name": "reports_all_label", "type": "text", "default_value": "All" },
+        { "key": "field_velstadt_reports_load_more_label", "label": "Load more label", "name": "reports_load_more_label", "type": "text", "default_value": "Load more" },
+        { "key": "field_velstadt_reports_empty_message", "label": "No results message", "name": "reports_empty_message", "type": "text", "default_value": "No reports found." },
+        { "key": "field_velstadt_reports_posts_per_page", "label": "Reports per batch", "name": "reports_posts_per_page", "type": "number", "default_value": 9, "min": 1, "max": 24, "step": 1 },
+
+        { "key": "field_velstadt_reports_subs_tab", "label": "Subscribe", "name": "", "type": "tab", "placement": "top" },
+        { "key": "field_velstadt_reports_subs_show", "label": "Show section", "name": "reports_subs_show", "type": "true_false", "ui": 1, "default_value": 1 },
+        { "key": "field_velstadt_reports_subs_title", "label": "Title", "name": "reports_subs_title", "type": "text", "default_value": "Research worth your time" },
+        { "key": "field_velstadt_reports_subs_subtitle", "label": "Subtitle", "name": "reports_subs_subtitle", "type": "textarea", "rows": 2, "new_lines": "", "default_value": "Get new threat research, technical findings, and practical guidance from Velstadt specialists." },
+        { "key": "field_velstadt_reports_subs_form_shortcode", "label": "Form shortcode override", "name": "reports_subs_form_shortcode", "type": "text", "instructions": "Optional. Leave empty to reuse the Contact Form 7 subscription form configured on Home.", "default_value": "" }
+    ],
+    "location": [
+        [
+            { "param": "page_template", "operator": "==", "value": "page-reports.php" }
+        ]
+    ],
+    "position": "normal",
+    "style": "default",
+    "active": true,
+    "description": "Editable content and catalog settings for the Reports page.",
+    "show_in_rest": false,
+    "modified": 1795354061
+}

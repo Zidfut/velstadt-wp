@@ -398,9 +398,8 @@
 	display: block;
 	width: 100%;
 	height: auto;
-	aspect-ratio: 8 / 5;
 	border-radius: 16px;
-	object-fit: cover;
+	object-fit: contain;
 }
 
 .editor-styles-wrapper .post__media .post__media-item .post__media-caption {
@@ -413,8 +412,9 @@
 	overflow-wrap: anywhere;
 }
 
-.editor-styles-wrapper .post__media.post__media--natural .post__media-item .post__media-image {
-	aspect-ratio: auto;
+.editor-styles-wrapper .post__media:not(.post__media--natural) .post__media-item .post__media-image {
+	aspect-ratio: 8 / 5;
+	object-fit: cover;
 }
 
 /* Flat table selectors preserve the nested component styling in Gutenberg. */
@@ -714,6 +714,7 @@
 }
 
 .editor-styles-wrapper .wp-block-acf-velstadt-key-takeaways,
+.editor-styles-wrapper .wp-block-acf-velstadt-key-findings,
 .editor-styles-wrapper .wp-block-acf-velstadt-details,
 .editor-styles-wrapper .wp-block-acf-velstadt-points,
 .editor-styles-wrapper .wp-block-acf-velstadt-action-rows,
