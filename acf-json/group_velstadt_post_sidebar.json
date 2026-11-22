@@ -14,7 +14,7 @@
         { "key": "field_velstadt_post_sidebar_badge_tab", "label": "Google badge", "type": "tab" },
         { "key": "field_velstadt_post_sidebar_badge_show", "label": "Show badge", "name": "post_sidebar_badge_show", "type": "true_false", "default_value": 1, "ui": 1 },
         { "key": "field_velstadt_post_sidebar_badge_url", "label": "Badge link", "name": "post_sidebar_badge_url", "type": "url", "instructions": "The badge is displayed only when this URL is filled in." },
-        { "key": "field_velstadt_post_sidebar_badge_image", "label": "Badge image", "name": "post_sidebar_badge_image", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all", "instructions": "Leave empty to use markup/images/google-source-badge.svg." },
+        { "key": "field_velstadt_post_sidebar_badge_image", "label": "Badge image", "name": "post_sidebar_badge_image", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all", "instructions": "Select the badge image from the Media Library." },
         { "key": "field_velstadt_post_sidebar_badge_alt", "label": "Badge alternative text", "name": "post_sidebar_badge_alt", "type": "text", "default_value": "Add Velstadt as a preferred source on Google" },
         { "key": "field_velstadt_post_sidebar_form_tab", "label": "Subscription", "type": "tab" },
         { "key": "field_velstadt_post_sidebar_form_show", "label": "Show subscription form", "name": "post_sidebar_form_show", "type": "true_false", "default_value": 1, "ui": 1 },
@@ -32,5 +32,5 @@
     "active": true,
     "description": "Shared sidebar blocks for every blog post.",
     "show_in_rest": false,
-    "modified": 1794820000
+    "modified": 1795160000
 }

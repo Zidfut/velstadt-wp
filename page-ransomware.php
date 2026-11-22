@@ -57,7 +57,7 @@ get_header();
 				<?php endif; ?>
 				<span class="screen-reader-text" data-ransomware-count><?php echo esc_html( sprintf( __( '%d profiles found.', 'velstadt' ), $profiles->found_posts ) ); ?></span>
 			</div>
-			<p class="ransomware__status" data-ransomware-status role="status" aria-live="polite"></p>
+			<p class="ransomware__status screen-reader-text" data-ransomware-status role="status" aria-live="polite"></p>
 		</div>
 	</section>
 	<?php get_template_part( 'template-parts/ransomware/catalog-cta', null, array( 'page_id' => $page_id ) ); ?>

@@ -188,6 +188,32 @@ body {
     background-color: var(--back);
 }
 
+.screen-reader-text {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+    z-index: 100000;
+    top: 5px;
+    left: 5px;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 15px 23px 14px;
+    overflow: visible;
+    clip: auto !important;
+    clip-path: none;
+}
+
 .container {
     display: block;
     width: calc(100% - 20px);
@@ -6257,16 +6283,6 @@ body {
             color: var(--gray-500);
         }
 
-        .ransomware__status {
-            margin: 16px 0 0;
-            font-size: 14px;
-            line-height: 20px;
-            color: var(--gray-500);
-
-            &:empty {
-                margin: 0;
-            }
-        }
     }
 
     .ransomware__cta {

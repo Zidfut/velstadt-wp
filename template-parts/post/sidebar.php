@@ -20,7 +20,7 @@ $badge_show = $has_scf ? (bool) get_field( 'post_sidebar_badge_show', 'option' )
 $badge_url = $has_scf ? get_field( 'post_sidebar_badge_url', 'option' ) : '';
 $badge_image = $has_scf ? get_field( 'post_sidebar_badge_image', 'option' ) : 0;
 $badge_alt = $has_scf ? get_field( 'post_sidebar_badge_alt', 'option' ) : '';
-$badge_src = $badge_image ? wp_get_attachment_image_url( (int) $badge_image, 'full' ) : get_template_directory_uri() . '/markup/images/google-source-badge.svg';
+$badge_src = $badge_image ? wp_get_attachment_image_url( (int) $badge_image, 'full' ) : '';
 $form_show = $has_scf ? (bool) get_field( 'post_sidebar_form_show', 'option' ) : false;
 $form = $has_scf ? get_field( 'post_sidebar_form_shortcode', 'option' ) : '';
 ?>
