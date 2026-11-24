@@ -515,6 +515,31 @@ main:has(+ .footer) > .section:last-child {
     }
 }
 
+@keyframes header-alert-pulse {
+    /* Figma uses four 600ms transitions between the alert variants. */
+    0%, 100% {
+        opacity: 0;
+        transform: translateY(1px) scale(.444);
+    }
+
+    25% {
+        opacity: 1;
+        transform: translateY(.75px) scale(.716, .717);
+        animation-timing-function: ease-out;
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    75% {
+        opacity: 0;
+        transform: translateY(0) scale(.889);
+        animation-timing-function: ease-out;
+    }
+}
+
 .header {
     position: fixed;
     top: 16px;
@@ -1394,8 +1419,27 @@ main:has(+ .footer) > .section:last-child {
             }
 
             &.icon--alert {
+                position: relative;
+                isolation: isolate;
+
                 &::before {
                     background-image: url('../images/icons/alert.svg');
+                }
+
+                @media (prefers-reduced-motion: no-preference) {
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        z-index: -1;
+                        top: calc(50% - 13px);
+                        left: -4.65px;
+                        width: 26px;
+                        height: 23px;
+                        background: url('../images/icons/alert-pulse.svg') no-repeat center;
+                        pointer-events: none;
+                        transform-origin: 12.65px 11.5px;
+                        animation: header-alert-pulse 2.4s linear infinite;
+                    }
                 }
             }
         }
