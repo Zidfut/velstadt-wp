@@ -1957,7 +1957,7 @@ main:has(+ .footer) > .section:last-child {
 }
 
 .hero {
-    background-image: url('../images/hero-bg.svg');
+    background-image: url('../images/hero-bg.svg?v=2');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

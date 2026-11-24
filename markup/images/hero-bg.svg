@@ -1,15 +1,49 @@
 <svg width="1440" height="960" viewBox="0 0 1440 960" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 0H1440V960H0V0Z" fill="#121121"/>
-<path d="M0 0H1440V960H0V0Z" fill="url(#paint0_radial_51_2565)"/>
-<path d="M0 0H1440V960H0V0Z" fill="url(#paint1_radial_51_2565)"/>
-<defs>
-<radialGradient id="paint0_radial_51_2565" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(943.816 960) rotate(-126.884) scale(653.79)">
-<stop stop-color="#0089CA"/>
-<stop offset="1" stop-color="#0089CA" stop-opacity="0"/>
-</radialGradient>
-<radialGradient id="paint1_radial_51_2565" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1440 0.000144171) rotate(132.97) scale(896.735 887.15)">
-<stop stop-color="#6D4AFF"/>
-<stop offset="1" stop-color="#6D4AFF" stop-opacity="0"/>
-</radialGradient>
-</defs>
+  <style>
+    .glow {
+      transform-box: view-box;
+      transform-origin: 0 0;
+    }
+
+    .glow-blue {
+      transform: translate(943.816px, 960px) scale(6.537901);
+    }
+
+    .glow-purple {
+      transform: translate(1440px, 0px) rotate(132.970deg) scale(8.967345, 8.871503);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .glow-blue { animation: blue-glow 25s linear infinite; }
+      .glow-purple { animation: purple-glow 25s linear infinite; }
+    }
+
+    /* Figma Back variants. Four keyframes at 5s intervals, then return to Default. */
+    @keyframes blue-glow {
+      20% { transform: translate(1440px, 960px) scale(11.108476); }
+      40% { transform: translate(1165.5px, -113px) scale(6.675659); }
+      60% { transform: translate(-31.5px, -129px) scale(9.017351); }
+      80% { transform: translate(406.5px, 1268px) scale(7.626545); }
+    }
+
+    @keyframes purple-glow {
+      20% { transform: translate(632px, -182.5px) rotate(71.009deg) scale(7.006356, 6.931473); }
+      40% { transform: translate(59px, -161.5px) rotate(31.980deg) scale(9.525672, 9.423863); }
+      60% { transform: translate(-111px, 1105px) rotate(-30.625deg) scale(11.179329, 11.059847); }
+      80% { transform: translate(1708px, 1181.5px) rotate(37.009deg) scale(10.732032, 10.617330); }
+    }
+  </style>
+  <defs>
+    <radialGradient id="blue">
+      <stop stop-color="#0089CA"/>
+      <stop offset="1" stop-color="#0089CA" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="purple">
+      <stop stop-color="#6D4AFF"/>
+      <stop offset="1" stop-color="#6D4AFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1440" height="960" fill="#121121"/>
+  <circle class="glow glow-blue" r="100" fill="url(#blue)"/>
+  <circle class="glow glow-purple" r="100" fill="url(#purple)"/>
 </svg>
