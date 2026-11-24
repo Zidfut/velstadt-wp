@@ -100,17 +100,20 @@ function velstadt_footer_default_content() {
 		'locations' => array(
 			array(
 				'title'        => 'USA',
-				'address_link' => velstadt_footer_default_link( '230 Park Avenue, 3rd & 4th Floor New York, NY 10169 United States' ),
+				'address_text' => "230 Park Avenue, 3rd & 4th Floor\nNew York, NY 10169\nUnited States",
+				'address_link' => velstadt_footer_default_link( '' ),
 				'phone_link'   => velstadt_footer_default_link( '+1 585 888 5371', 'tel:+15858885371' ),
 			),
 			array(
 				'title'        => 'Ukraine',
-				'address_link' => velstadt_footer_default_link( '3 Dorohozhytska Street Kyiv, 01054 Ukraine' ),
+				'address_text' => "3 Dorohozhytska Street\nKyiv, 01054\nUkraine",
+				'address_link' => velstadt_footer_default_link( '' ),
 				'phone_link'   => velstadt_footer_default_link( '+38 093 010 10 93', 'tel:+380930101093' ),
 			),
 			array(
 				'title'        => 'Poland',
-				'address_link' => velstadt_footer_default_link( 'Marszałkowska St., 126/134 00-008 Warsaw Poland' ),
+				'address_text' => "Marszałkowska St., 126/134\n00-008 Warsaw\nPoland",
+				'address_link' => velstadt_footer_default_link( '' ),
 				'phone_link'   => velstadt_footer_default_link( '+48 576 672 205', 'tel:+48576672205' ),
 			),
 		),

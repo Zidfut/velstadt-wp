@@ -28,6 +28,7 @@ $copyright        = str_replace( '{year}', wp_date( 'Y' ), (string) $copyright )
 $ai_links         = is_array( $ai_links ) ? $ai_links : array();
 $menu_columns     = is_array( $menu_columns ) ? $menu_columns : array();
 $locations        = is_array( $locations ) ? $locations : array();
+$default_addresses = array_column( $defaults['locations'], 'address_text', 'title' );
 $contact_links    = is_array( $contact_links ) ? $contact_links : array();
 $socials          = is_array( $socials ) ? $socials : array();
 $legal_links      = is_array( $legal_links ) ? $legal_links : array();
@@ -109,12 +110,19 @@ $target_attributes = static function ( $link ) {
 		<?php if ( $locations || $contact_links || $socials ) : ?>
 			<div class="footer__bot">
 				<?php foreach ( $locations as $location ) : ?>
+					<?php
+					$address_link = velstadt_normalize_footer_link( $location['address_link'] ?? array() );
+					$address_text = trim( $location['address_text'] ?? '' );
+					if ( '' === $address_text ) {
+						$default_address = $default_addresses[ $location['title'] ?? '' ] ?? '';
+						$address_text    = str_replace( "\n", ' ', $default_address ) === $address_link['title'] ? $default_address : $address_link['title'];
+					}
+					?>
 					<div class="footer__bot-item">
 						<h3 class="h3 footer__bot-title"><?php echo esc_html( isset( $location['title'] ) ? $location['title'] : '' ); ?></h3>
 						<ul>
-							<?php if ( ! empty( $location['address_link'] ) ) : ?>
-								<?php $address_link = velstadt_normalize_footer_link( $location['address_link'] ); ?>
-								<li><a href="<?php echo esc_url( $address_link['url'] ); ?>" class="footer__bot-link icon icon--pin"<?php echo $target_attributes( $address_link ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?php echo esc_html( $address_link['title'] ); ?></a></li>
+							<?php if ( '' !== $address_text ) : ?>
+								<li><a href="<?php echo esc_url( $address_link['url'] ); ?>" class="footer__bot-link icon icon--pin"<?php echo $target_attributes( $address_link ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><span><?php echo wp_kses( nl2br( esc_html( $address_text ), false ), array( 'br' => array() ) ); ?></span></a></li>
 							<?php endif; ?>
 							<?php if ( ! empty( $location['phone_link'] ) ) : ?>
 								<?php $phone_link = velstadt_normalize_footer_link( $location['phone_link'] ); ?>

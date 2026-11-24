@@ -1,5 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+	const security = document.querySelector('.section.security');
+	if (security && 'IntersectionObserver' in window) {
+		const securityObserver = new IntersectionObserver((entries) => {
+			if (entries.some((entry) => entry.isIntersecting)) {
+				security.classList.add('security--expanded');
+				securityObserver.disconnect();
+			}
+		}, { rootMargin: '0px 0px -100px 0px' });
+
+		securityObserver.observe(security);
+	}
+
 	const menuBtn = document.querySelector('.header__mobile-btn');
 	const headerMenu = document.querySelector('.header__nav-wrap');
 	const body = document.querySelector('body');

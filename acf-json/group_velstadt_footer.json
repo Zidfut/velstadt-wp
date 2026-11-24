@@ -322,6 +322,27 @@
                     "parent_repeater": "field_velstadt_footer_locations"
                 },
                 {
+                    "key": "field_velstadt_footer_location_address_text",
+                    "label": "Address",
+                    "name": "address_text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Enter the street, city and postal code, and country on separate lines.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_velstadt_footer_locations"
+                },
+                {
                     "key": "field_velstadt_footer_location_address",
                     "label": "Address link",
                     "name": "address_link",
@@ -659,5 +680,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1794849212
+    "modified": 1795555635
 }

@@ -2781,6 +2781,12 @@ main:has(+ .footer) > .section:last-child {
 .blog__section {
     border-bottom: 1px solid var(--gray-100);
 
+    .section__header-container {
+        .section__header-left {
+            max-width: 560px !important;
+        }
+    }
+
     .blog__container {
         display: grid;
         grid-template-columns: 1fr 1.25fr;
@@ -3170,7 +3176,8 @@ main:has(+ .footer) > .section:last-child {
                 }
 
                 .resources__card-date {
-                    font-weight: 400;   
+                    font-weight: 400;
+                    color: var(--gray-500);
                 }
             }
 
@@ -3190,7 +3197,7 @@ main:has(+ .footer) > .section:last-child {
     }
 
     .swiper-wrapper {
-        align-items: center;
+        align-items: stretch;
     }
 
     .customer__card {
@@ -3204,6 +3211,7 @@ main:has(+ .footer) > .section:last-child {
         justify-content: space-between;
         gap: 56px;
         width: 389px;
+        height: initial;
         text-decoration: none;
         z-index: 1;
         overflow: hidden;
@@ -4448,6 +4456,9 @@ main:has(+ .footer) > .section:last-child {
 }
 
 .security {
+    position: relative;
+    isolation: isolate;
+    container-type: inline-size;
     background: #12101e;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     overflow: hidden;
@@ -4456,9 +4467,16 @@ main:has(+ .footer) > .section:last-child {
         padding-block: var(--padding);
     }
 
+    @media (prefers-reduced-motion: no-preference) {
+        &.security--expanded .security__content::after {
+            inset-block: calc(-1 * var(--padding));
+            inset-inline: calc(50% - 50cqw);
+            border-radius: 0;
+        }
+    }
+
     .security__content {
         position: relative;
-        z-index: 0;
         padding: 96px 32px;
         display: flex;
         flex-direction: column;
@@ -4499,6 +4517,12 @@ main:has(+ .footer) > .section:last-child {
                 ),
                 #12101e;
             z-index: -1;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            &::after {
+                transition: inset .5s linear, border-radius .5s linear;
+            }
         }
 
         .security__header {
@@ -7269,6 +7293,14 @@ main:has(+ .footer) > .section:last-child {
                 flex-direction: column;
                 align-items: flex-start;
                 justify-content: center;
+            }
+        }
+
+        .section__header-left {
+            max-width: 500px;
+
+            @media(width <= 1024px) {
+                max-width: 100%;
             }
         }
 
