@@ -36,6 +36,12 @@ function velstadt_post_block_categories( $categories ) {
 }
 add_filter( 'block_categories_all', 'velstadt_post_block_categories' );
 
+/** Let editors mark a paragraph as the eyebrow of the following heading. */
+function velstadt_register_heading_eyebrow_style() {
+	register_block_style( 'core/paragraph', array( 'name' => 'heading-eyebrow', 'label' => __( 'Heading eyebrow', 'velstadt' ) ) );
+}
+add_action( 'init', 'velstadt_register_heading_eyebrow_style' );
+
 /** Register the custom SCF blocks used by posts. */
 function velstadt_register_post_blocks() {
 	if ( ! function_exists( 'acf_register_block_type' ) ) {

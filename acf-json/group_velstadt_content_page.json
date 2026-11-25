@@ -106,7 +106,7 @@
             "required": false,
             "conditional_logic": false,
             "wrapper": { "width": "50", "class": "", "id": "" },
-            "default_value": "Index",
+            "default_value": "On this page",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -134,5 +134,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1794709000
+    "modified": 1795629595
 }

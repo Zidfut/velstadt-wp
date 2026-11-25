@@ -437,7 +437,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		applyAwardsFilter(new URL(window.location.href).searchParams.get('platform') || 'all');
 	}
 
-	const postContent = document.querySelector('.post__content');
+	const postContent = document.querySelector('.post__container > article, .page__container > article');
 	const progress = document.querySelector('.post__progress-line-current');
 	if (postContent && progress) {
 		let progressScheduled = false;

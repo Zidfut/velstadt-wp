@@ -25,20 +25,7 @@ $form_show = $has_scf ? (bool) get_field( 'post_sidebar_form_show', 'option' ) :
 $form = $has_scf ? get_field( 'post_sidebar_form_shortcode', 'option' ) : '';
 ?>
 <aside class="post__sidebar"><div class="post__sidebar-container">
-	<?php if ( $toc ) : ?>
-		<div class="post__sidebar-item">
-			<div class="post__progress">
-				<div class="post__progress-header">
-					<span class="post__progress-title"><?php esc_html_e( 'On this page', 'velstadt' ); ?></span>
-					<a href="#top" class="post__progress-top" aria-label="<?php esc_attr_e( 'Back to top', 'velstadt' ); ?>"></a>
-				</div>
-				<div class="post__progress-line"><span class="post__progress-line-current" style="width: 0%;"></span></div>
-			</div>
-			<nav class="toc" aria-label="<?php esc_attr_e( 'Table of contents', 'velstadt' ); ?>"><ul>
-				<?php foreach ( $toc as $item ) : ?><li><a href="#<?php echo esc_attr( $item['id'] ); ?>"><?php echo esc_html( $item['label'] ); ?></a></li><?php endforeach; ?>
-			</ul></nav>
-		</div>
-	<?php endif; ?>
+	<?php get_template_part( 'template-parts/common/table-of-contents', null, array( 'toc' => $toc ) ); ?>
 	<?php if ( $categories ) : ?>
 		<div class="post__categories">
 			<h3 class="h3 post__sidebar-title"><?php esc_html_e( 'Categories', 'velstadt' ); ?></h3>

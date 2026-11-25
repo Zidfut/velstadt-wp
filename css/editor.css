@@ -44,6 +44,21 @@
 	line-height: 1.33;
 }
 
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > p.is-style-heading-eyebrow {
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 500;
+	color: var(--gray-500);
+}
+
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > p.is-style-heading-eyebrow:not(:first-child) {
+	margin-block-start: 64px;
+}
+
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > p.is-style-heading-eyebrow + .wp-block-heading {
+	margin-block-start: 16px;
+}
+
 .editor-styles-wrapper p a {
 	color: var(--primary-500);
 }

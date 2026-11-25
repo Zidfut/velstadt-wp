@@ -21,15 +21,15 @@ while ( have_posts() ) :
 	$updated_date     = $has_scf ? get_field( 'content_page_updated_date', $page_id ) : '';
 	$updated_label    = $has_scf ? get_field( 'content_page_updated_label', $page_id ) : 'Last updated';
 	$show_toc         = $has_scf ? (bool) get_field( 'content_page_show_toc', $page_id ) : true;
-	$toc_title        = $has_scf ? get_field( 'content_page_toc_title', $page_id ) : 'Index';
+	$toc_title        = $has_scf ? get_field( 'content_page_toc_title', $page_id ) : __( 'On this page', 'velstadt' );
 	$updated_date     = $updated_date ?: get_the_modified_date( 'F Y', $page_id );
 	$updated_label    = $updated_label ?: 'Last updated';
-	$toc_title        = $toc_title ?: 'Index';
+	$toc_title        = $toc_title ?: __( 'On this page', 'velstadt' );
 	$prepared_content = velstadt_prepare_content_page( apply_filters( 'the_content', get_the_content() ) );
 	$toc              = $show_toc ? $prepared_content['toc'] : array();
 	?>
 	<main id="primary" class="page">
-		<div class="header__duplicate header__duplicate--dark">
+		<div id="top" class="header__duplicate header__duplicate--dark">
 			<div class="container header__duplicate-container section__lines"></div>
 		</div>
 
@@ -64,14 +64,7 @@ while ( have_posts() ) :
 
 			<?php if ( $toc ) : ?>
 				<aside class="page__sidebar">
-					<nav class="toc" aria-label="<?php echo esc_attr( $toc_title ); ?>">
-						<span class="toc__title"><?php echo esc_html( $toc_title ); ?></span>
-						<ul>
-							<?php foreach ( $toc as $item ) : ?>
-								<li><a href="#<?php echo esc_attr( $item['id'] ); ?>"><?php echo esc_html( $item['label'] ); ?></a></li>
-							<?php endforeach; ?>
-						</ul>
-					</nav>
+					<?php get_template_part( 'template-parts/common/table-of-contents', null, array( 'toc' => $toc, 'title' => $toc_title ) ); ?>
 				</aside>
 			<?php endif; ?>
 		</div>
