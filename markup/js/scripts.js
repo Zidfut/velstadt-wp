@@ -310,13 +310,37 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 
 	const slider = document.querySelector('.blog__filter-category');
-	const blogSort = document.querySelector('.blog__filter-sort');
+	const blogSelects = document.querySelectorAll('.blog__filter-form select');
+	const blogSearch = document.querySelector('#blog-search');
 
-	if (blogSort) {
-		blogSort.addEventListener('change', () => {
-			blogSort.form?.submit();
+	if (blogSearch) {
+		const initialSearch = blogSearch.value.trim();
+		let searchTimer;
+		let composing = false;
+
+		const queueSearch = () => {
+			clearTimeout(searchTimer);
+			if (composing || blogSearch.value.trim() === initialSearch) return;
+			searchTimer = setTimeout(() => blogSearch.form?.requestSubmit(), 500);
+		};
+
+		blogSearch.addEventListener('input', queueSearch);
+		blogSearch.addEventListener('compositionstart', () => {
+			composing = true;
+			clearTimeout(searchTimer);
 		});
+		blogSearch.addEventListener('compositionend', () => {
+			composing = false;
+			queueSearch();
+		});
+		blogSearch.form?.addEventListener('submit', () => clearTimeout(searchTimer));
 	}
+
+	blogSelects.forEach((select) => {
+		select.addEventListener('change', () => {
+			select.form?.requestSubmit();
+		});
+	});
 
 	if (slider) {
 		let isDown = false;

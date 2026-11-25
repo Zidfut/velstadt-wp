@@ -31,16 +31,21 @@ if ( ! $featured_id || 'publish' !== get_post_status( $featured_id ) ) {
 	$featured_id = $latest_ids ? (int) $latest_ids[0] : 0;
 }
 
-$active_category_slug = isset( $_GET['blog_category'] ) ? sanitize_title( wp_unslash( $_GET['blog_category'] ) ) : '';
+$active_category_slug = isset( $_GET['blog_category'] ) && is_string( $_GET['blog_category'] ) ? sanitize_title( wp_unslash( $_GET['blog_category'] ) ) : '';
 $active_category      = $active_category_slug ? get_term_by( 'slug', $active_category_slug, 'category' ) : null;
 if ( ! $active_category || is_wp_error( $active_category ) ) {
 	$active_category_slug = '';
 	$active_category      = null;
 }
 
-$blog_search = isset( $_GET['blog_search'] ) ? sanitize_text_field( wp_unslash( $_GET['blog_search'] ) ) : '';
-$blog_order  = isset( $_GET['blog_order'] ) ? sanitize_key( wp_unslash( $_GET['blog_order'] ) ) : 'newest';
+$blog_search = isset( $_GET['blog_search'] ) && is_string( $_GET['blog_search'] ) ? sanitize_text_field( wp_unslash( $_GET['blog_search'] ) ) : '';
+$blog_order  = isset( $_GET['blog_order'] ) && is_string( $_GET['blog_order'] ) ? sanitize_key( wp_unslash( $_GET['blog_order'] ) ) : 'newest';
 $blog_order  = 'oldest' === $blog_order ? 'oldest' : 'newest';
+$blog_format = isset( $_GET['blog_format'] ) && is_string( $_GET['blog_format'] ) ? sanitize_title( wp_unslash( $_GET['blog_format'] ) ) : '';
+$format_term = $blog_format ? get_term_by( 'slug', $blog_format, 'blog_format' ) : null;
+if ( ! $format_term || is_wp_error( $format_term ) ) {
+	$blog_format = '';
+}
 
 $paged      = max( 1, (int) get_query_var( 'paged' ) );
 $query_args = array(
@@ -59,15 +64,22 @@ if ( $active_category_slug ) {
 if ( $blog_search ) {
 	$query_args['s'] = $blog_search;
 }
+if ( $blog_format ) {
+	$query_args['tax_query'] = array( array( 'taxonomy' => 'blog_format', 'field' => 'slug', 'terms' => $blog_format ) );
+}
 
 $posts_query = new WP_Query( $query_args );
+$has_results = ! empty( $posts_query->posts );
+$show_intro = $has_results && '' === $active_category_slug && '' === trim( $blog_search );
 $categories  = get_categories( array( 'hide_empty' => false ) );
+$formats     = get_terms( array( 'taxonomy' => 'blog_format', 'hide_empty' => false, 'orderby' => 'term_id', 'order' => 'ASC' ) );
 
 $active_filters = array_filter(
 	array(
 		'blog_category' => $active_category_slug,
 		'blog_search'   => $blog_search,
 		'blog_order'    => 'oldest' === $blog_order ? 'oldest' : '',
+		'blog_format'   => $blog_format,
 	)
 );
 
@@ -85,7 +97,7 @@ $filtered_blog_url = static function ( $category_slug = null ) use ( $blog_url, 
 
 $pagination_url = static function ( $page_number ) use ( $active_filters ) {
 	$url = get_pagenum_link( max( 1, (int) $page_number ) );
-	$url = remove_query_arg( array( 'blog_category', 'blog_search', 'blog_order' ), $url );
+	$url = remove_query_arg( array( 'blog_category', 'blog_search', 'blog_order', 'blog_format' ), $url );
 
 	return $active_filters ? add_query_arg( $active_filters, $url ) : $url;
 };
@@ -98,7 +110,7 @@ get_header();
 			<div class="container header__duplicate-container section__lines"></div>
 		</div>
 
-		<?php if ( false !== $hero_show && 0 !== $hero_show && '0' !== $hero_show ) : ?>
+		<?php if ( $show_intro && false !== $hero_show && 0 !== $hero_show && '0' !== $hero_show ) : ?>
 			<div class="section__header">
 				<div class="container section__header-container section__lines">
 					<div class="section__header-left">
@@ -114,7 +126,7 @@ get_header();
 			</div>
 		<?php endif; ?>
 
-		<?php if ( $featured_id ) : ?>
+		<?php if ( $show_intro && $featured_id ) : ?>
 			<?php
 			$featured_category = velstadt_blog_primary_category( $featured_id );
 			$featured_author   = velstadt_blog_author_name( $featured_id );
@@ -125,7 +137,7 @@ get_header();
 			<div class="blog__main">
 				<div class="blog__main-container container section__lines">
 					<div class="blog__main-left">
-						<a href="<?php echo esc_url( get_permalink( $featured_id ) ); ?>"><?php velstadt_blog_post_image( $featured_id ); ?></a>
+						<a href="<?php echo esc_url( get_permalink( $featured_id ) ); ?>"><?php velstadt_blog_post_image( $featured_id, '', 'large', 'featured' ); ?></a>
 					</div>
 					<div class="blog__main-right">
 						<?php if ( $featured_category ) : ?><span class="blog__main-category"><?php echo esc_html( $featured_category->name ); ?></span><?php endif; ?>
@@ -163,6 +175,16 @@ get_header();
 						</div>
 					</fieldset>
 
+					<fieldset class="blog__filter-format-wrap">
+						<legend><?php esc_html_e( 'Format', 'velstadt' ); ?></legend>
+						<select id="blog-format" name="blog_format" aria-label="<?php esc_attr_e( 'Filter posts by format', 'velstadt' ); ?>">
+							<option value=""><?php esc_html_e( 'All formats', 'velstadt' ); ?></option>
+							<?php if ( ! is_wp_error( $formats ) ) : foreach ( $formats as $format ) : ?>
+								<option value="<?php echo esc_attr( $format->slug ); ?>" <?php selected( $blog_format, $format->slug ); ?>><?php echo esc_html( $format->name ); ?></option>
+							<?php endforeach; endif; ?>
+						</select>
+					</fieldset>
+
 					<fieldset class="blog__filter-sort-wrap">
 						<legend><?php esc_html_e( 'Sort by', 'velstadt' ); ?></legend>
 						<select id="blog-order" class="blog__filter-sort" name="blog_order" aria-label="<?php esc_attr_e( 'Sort blog posts', 'velstadt' ); ?>">
@@ -170,6 +192,8 @@ get_header();
 							<option value="oldest" <?php selected( $blog_order, 'oldest' ); ?>><?php esc_html_e( 'Oldest first', 'velstadt' ); ?></option>
 						</select>
 					</fieldset>
+
+					<a class="blog__filter-clear" href="<?php echo esc_url( $blog_url ); ?>"><?php esc_html_e( 'Clear filter', 'velstadt' ); ?></a>
 				</form>
 
 				<div class="blog__filter-category-wrap">
@@ -186,17 +210,17 @@ get_header();
 		</div>
 
 		<div class="blog__grid">
-			<div class="blog__grid-container container section__lines">
-				<?php if ( $posts_query->have_posts() ) : ?>
+			<div class="blog__grid-container container section__lines<?php echo $has_results ? '' : ' blog__grid-container--empty'; ?>">
+				<?php if ( $has_results ) : ?>
 					<?php foreach ( $posts_query->posts as $blog_post ) : ?>
 						<?php get_template_part( 'template-parts/blog/card', null, array( 'post_id' => $blog_post->ID ) ); ?>
 					<?php endforeach; ?>
 				<?php else : ?>
-					<p><?php esc_html_e( 'No posts found.', 'velstadt' ); ?></p>
+					<?php get_template_part( 'template-parts/blog/empty', null, array( 'search' => $blog_search, 'reset_url' => $blog_url ) ); ?>
 				<?php endif; ?>
 			</div>
 
-			<?php if ( $posts_query->max_num_pages > 1 ) : ?>
+			<?php if ( $has_results && $posts_query->max_num_pages > 1 ) : ?>
 				<?php
 				$total_pages = (int) $posts_query->max_num_pages;
 				$pagination_items = velstadt_blog_pagination_items( $paged, $total_pages );
@@ -237,11 +261,39 @@ get_header();
 	</section>
 
 	<?php if ( false !== $show_resources && 0 !== $show_resources && '0' !== $show_resources ) : ?>
-		<?php get_template_part( 'template-parts/home/resources' ); ?>
+		<?php
+		$selected_reports = array_filter( array_map( 'absint', (array) get_field( 'blog_resources_reports', $blog_page_id ) ) );
+		$report_args = array( 'post_type' => 'velstadt_report', 'post_status' => 'publish', 'posts_per_page' => 3, 'fields' => 'ids' );
+		if ( $selected_reports ) {
+			$report_args['post__in'] = $selected_reports;
+			$report_args['orderby'] = 'post__in';
+		}
+		get_template_part(
+			'template-parts/reports/section',
+			null,
+			array(
+				'reports'  => get_posts( $report_args ),
+				'subtitle' => get_field( 'blog_resources_subtitle', $blog_page_id ),
+				'title'    => get_field( 'blog_resources_title', $blog_page_id ),
+				'link'     => get_field( 'blog_resources_link', $blog_page_id ),
+			)
+		);
+		?>
 	<?php endif; ?>
 
 	<?php if ( false !== $show_subscribe && 0 !== $show_subscribe && '0' !== $show_subscribe ) : ?>
-		<?php get_template_part( 'template-parts/home/subs' ); ?>
+		<?php
+		$subscription_form = get_field( 'blog_subs_form_shortcode', $blog_page_id ) ?: get_field( 'home_subs_form_shortcode', (int) get_option( 'page_on_front' ) );
+		get_template_part(
+			'template-parts/common/subscription',
+			null,
+			array(
+				'title'    => get_field( 'blog_subs_title', $blog_page_id ),
+				'subtitle' => get_field( 'blog_subs_subtitle', $blog_page_id ),
+				'form'     => $subscription_form,
+			)
+		);
+		?>
 	<?php endif; ?>
 
 <?php

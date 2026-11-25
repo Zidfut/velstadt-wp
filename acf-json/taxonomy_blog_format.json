@@ -1,0 +1,35 @@
+{
+    "key": "taxonomy_blog_format",
+    "title": "Blog Formats",
+    "active": true,
+    "taxonomy": "blog_format",
+    "object_type": ["post"],
+    "advanced_configuration": true,
+    "labels": {
+        "name": "Formats",
+        "singular_name": "Format",
+        "menu_name": "Formats",
+        "all_items": "All Formats",
+        "edit_item": "Edit Format",
+        "add_new_item": "Add New Format",
+        "search_items": "Search Formats"
+    },
+    "public": false,
+    "publicly_queryable": false,
+    "hierarchical": false,
+    "show_ui": true,
+    "show_in_menu": true,
+    "show_in_nav_menus": false,
+    "show_tagcloud": false,
+    "show_in_quick_edit": true,
+    "show_admin_column": true,
+    "show_in_rest": true,
+    "default_term": {
+        "default_term_enabled": true,
+        "default_term_name": "Article",
+        "default_term_slug": "article",
+        "default_term_description": ""
+    },
+    "rewrite": {"permalink_rewrite": "no_permalink"},
+    "query_var": "none"
+}

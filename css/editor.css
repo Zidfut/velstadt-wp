@@ -44,6 +44,10 @@
 	line-height: 1.33;
 }
 
+.editor-styles-wrapper p a {
+	color: var(--primary-500);
+}
+
 .editor-styles-wrapper [data-type^="acf/velstadt-"] {
 	max-width: 100%;
 }
@@ -359,12 +363,36 @@
 	}
 }
 
+.editor-styles-wrapper .post__table:is(.post__table--ioc, .post__table--mitre) .post__table-grid {
+	line-height: 24px;
+}
+
+.editor-styles-wrapper .post__table:is(.post__table--ioc, .post__table--mitre) .post__table-grid col:first-child {
+	width: 160px;
+}
+
+.editor-styles-wrapper .post__table:is(.post__table--ioc, .post__table--mitre) .post__table-grid .post__table-cell {
+	border-bottom: 0;
+	box-shadow: inset 0 -1px var(--gray-150);
+	vertical-align: middle;
+}
+
+.editor-styles-wrapper .post__table:is(.post__table--ioc, .post__table--mitre) .post__table-grid thead .post__table-cell {
+	padding: 12px 16px;
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.editor-styles-wrapper .post__table:is(.post__table--ioc, .post__table--mitre) .post__table-grid tbody tr:last-child .post__table-cell {
+	box-shadow: none;
+}
+
 .editor-styles-wrapper :not(pre) > code {
 	border-radius: 6px;
-	padding: 2px 8px;
+	padding: 0 8px;
 	background: var(--primary-50);
 	font-family: var(--third-family), monospace;
-	font-size: 0.95em;
+	font-size: 16px;
 	line-height: inherit;
 	color: var(--primary-500);
 	white-space: break-spaces;

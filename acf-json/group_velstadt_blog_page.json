@@ -25,8 +25,18 @@
             "bidirectional_target": []
         },
         { "key": "field_velstadt_blog_posts_per_page", "label": "Posts per page", "name": "blog_posts_per_page", "type": "number", "default_value": 6, "min": 1, "max": 24, "step": 1 },
-        { "key": "field_velstadt_blog_show_resources", "label": "Show Reports and Research", "name": "blog_show_resources", "type": "true_false", "ui": 1, "default_value": 1 },
-        { "key": "field_velstadt_blog_show_subscribe", "label": "Show Subscribe section", "name": "blog_show_subscribe", "type": "true_false", "ui": 1, "default_value": 1 }
+        { "key": "field_velstadt_blog_resources_tab", "label": "Reports and Research", "name": "", "type": "tab", "placement": "top" },
+        { "key": "field_velstadt_blog_show_resources", "label": "Show section", "name": "blog_show_resources", "type": "true_false", "ui": 1, "default_value": 1 },
+        { "key": "field_velstadt_blog_resources_subtitle", "label": "Eyebrow", "name": "blog_resources_subtitle", "type": "text", "default_value": "Reports and Research" },
+        { "key": "field_velstadt_blog_resources_title", "label": "Heading", "name": "blog_resources_title", "type": "textarea", "rows": 2, "new_lines": "", "default_value": "Intelligence for\nyour next decision" },
+        { "key": "field_velstadt_blog_resources_reports", "label": "Reports", "name": "blog_resources_reports", "type": "relationship", "post_type": ["velstadt_report"], "post_status": ["publish"], "filters": ["search"], "return_format": "id", "max": 3, "instructions": "Choose up to three published reports and drag them to set the order. Leave empty to show the latest three reports." },
+        { "key": "field_velstadt_blog_resources_link", "label": "View all link", "name": "blog_resources_link", "type": "link", "return_format": "array" },
+
+        { "key": "field_velstadt_blog_subs_tab", "label": "Subscribe", "name": "", "type": "tab", "placement": "top" },
+        { "key": "field_velstadt_blog_show_subscribe", "label": "Show section", "name": "blog_show_subscribe", "type": "true_false", "ui": 1, "default_value": 1 },
+        { "key": "field_velstadt_blog_subs_title", "label": "Title", "name": "blog_subs_title", "type": "text", "default_value": "Velstadt Intelligence Brief" },
+        { "key": "field_velstadt_blog_subs_subtitle", "label": "Subtitle", "name": "blog_subs_subtitle", "type": "textarea", "rows": 2, "new_lines": "", "default_value": "Monthly threat research, practical recommendations, and executive insights." },
+        { "key": "field_velstadt_blog_subs_form_shortcode", "label": "Form shortcode", "name": "blog_subs_form_shortcode", "type": "text", "instructions": "Leave empty to reuse the Contact Form 7 subscription form configured on Home." }
     ],
     "location": [[{ "param": "page_type", "operator": "==", "value": "posts_page" }]],
     "menu_order": 0,
@@ -41,5 +51,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1794700069
+    "modified": 1795620256
 }

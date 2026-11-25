@@ -12,6 +12,11 @@ $posts_title    = $posts_page_id ? get_the_title( $posts_page_id ) : __( 'Blog',
 $category       = velstadt_blog_primary_category( $post_id );
 $eyebrow        = $category ? $category->name : $posts_title;
 $description    = get_the_excerpt( $post_id );
+$hero_image_id  = function_exists( 'get_field' ) ? (int) get_field( 'post_hero_image', $post_id ) : 0;
+$hero_image     = $hero_image_id ? wp_get_attachment_image( $hero_image_id, 'full', false, array( 'class' => 'post__img', 'alt' => get_the_title( $post_id ) ) ) : '';
+if ( ! $hero_image ) {
+	$hero_image = get_the_post_thumbnail( $post_id, 'full', array( 'class' => 'post__img', 'alt' => get_the_title( $post_id ) ) );
+}
 $author_id      = velstadt_blog_author_id( $post_id );
 $author_name    = velstadt_blog_author_name( $post_id );
 $author_position = $author_id ? get_field( 'author_position', $author_id ) : '';
@@ -71,8 +76,8 @@ $related        = velstadt_post_related_posts( $post_id, 3 );
 					</div>
 				</div>
 			</div>
-			<?php if ( has_post_thumbnail() ) : ?>
-				<div class="section__header-right"><?php the_post_thumbnail( 'full', array( 'class' => 'post__img', 'alt' => get_the_title() ) ); ?></div>
+			<?php if ( $hero_image ) : ?>
+				<div class="section__header-right"><?php echo $hero_image; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
 			<?php endif; ?>
 		</div>
 	</header>
@@ -83,11 +88,27 @@ $related        = velstadt_post_related_posts( $post_id, 3 );
 		<article class="post__content">
 			<?php echo $prepared['content']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			<?php wp_link_pages( array( 'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'velstadt' ), 'after' => '</div>' ) ); ?>
-			<?php get_template_part( 'template-parts/post/author', null, array( 'post_id' => $post_id, 'author_id' => $author_id ) ); ?>
+			<?php if ( ! has_block( 'acf/velstadt-author', get_post( $post_id ) ) ) : ?>
+				<?php get_template_part( 'template-parts/post/author', null, array( 'post_id' => $post_id, 'author_id' => $author_id ) ); ?>
+			<?php endif; ?>
 		</article>
 		<?php get_template_part( 'template-parts/post/sidebar', null, array( 'toc' => $toc, 'post_id' => $post_id ) ); ?>
 	</div>
 </main>
+
+<?php
+get_template_part(
+	'template-parts/common/subscription',
+	null,
+	array(
+		'show'     => (bool) get_field( 'post_subs_show', 'option' ),
+		'eyebrow'  => get_field( 'post_subs_eyebrow', 'option' ),
+		'title'    => get_field( 'post_subs_title', 'option' ),
+		'subtitle' => get_field( 'post_subs_subtitle', 'option' ),
+		'form'     => get_field( 'post_subs_form_shortcode', 'option' ),
+	)
+);
+?>
 
 <?php if ( $related && $related->have_posts() ) : ?>
 	<section class="section resources related__posts">

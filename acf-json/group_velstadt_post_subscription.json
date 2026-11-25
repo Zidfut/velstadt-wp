@@ -1,0 +1,20 @@
+{
+    "key": "group_velstadt_post_subscription",
+    "title": "Post subscription",
+    "fields": [
+        { "key": "field_velstadt_post_subs_show", "name": "post_subs_show", "label": "Show section", "type": "true_false", "ui": 1, "default_value": 1 },
+        { "key": "field_velstadt_post_subs_eyebrow", "name": "post_subs_eyebrow", "label": "Eyebrow", "type": "text", "default_value": "Velstadt Brief" },
+        { "key": "field_velstadt_post_subs_title", "name": "post_subs_title", "label": "Heading", "type": "text", "default_value": "Stay informed" },
+        { "key": "field_velstadt_post_subs_subtitle", "name": "post_subs_subtitle", "label": "Description", "type": "textarea", "rows": 2, "new_lines": "", "default_value": "Monthly threat research and security insights." },
+        { "key": "field_velstadt_post_subs_form_shortcode", "name": "post_subs_form_shortcode", "label": "Form shortcode", "type": "text", "instructions": "Contact Form 7 subscription form displayed below blog articles, before Related posts." }
+    ],
+    "location": [[{ "param": "options_page", "operator": "==", "value": "options" }]],
+    "menu_order": 21,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Shared subscription section below every blog article.",
+    "show_in_rest": false
+}

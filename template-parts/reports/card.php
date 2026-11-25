@@ -29,6 +29,6 @@ $classes   = 'reports__card' . ( ! empty( $args['class'] ) ? ' ' . sanitize_html
 			<h3><a href="<?php echo esc_url( $permalink ); ?>"><?php echo esc_html( get_the_title( $report_id ) ); ?></a></h3>
 			<?php if ( $excerpt ) : ?><p><?php echo esc_html( wp_strip_all_tags( $excerpt ) ); ?></p><?php endif; ?>
 		</div>
-		<p class="reports__card-meta"><span><?php esc_html_e( 'Velstadt Research', 'velstadt' ); ?> &middot; <?php echo esc_html( get_the_date( 'F j, Y', $report_id ) ); ?></span><img src="<?php echo esc_url( get_template_directory_uri() . '/markup/images/icons/arrow-narrow-up-right.svg' ); ?>" width="16" height="16" alt=""></p>
+		<p class="reports__card-meta"><span><span class="meta-title"><?php esc_html_e( 'Velstadt Research', 'velstadt' ); ?> &middot; </span><?php echo esc_html( get_the_date( 'F j, Y', $report_id ) ); ?></span><img src="<?php echo esc_url( get_template_directory_uri() . '/markup/images/icons/arrow-narrow-up-right.svg' ); ?>" width="16" height="16" alt=""></p>
 	</div>
 </article>

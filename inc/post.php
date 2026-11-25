@@ -56,6 +56,7 @@ function velstadt_register_post_blocks() {
 		'related'       => array( 'title' => __( 'Related Reading', 'velstadt' ), 'icon' => 'external' ),
 		'download'      => array( 'title' => __( 'Download', 'velstadt' ), 'icon' => 'download' ),
 		'share'         => array( 'title' => __( 'Share / CTA', 'velstadt' ), 'icon' => 'share' ),
+		'author'        => array( 'title' => __( 'Article Author', 'velstadt' ), 'icon' => 'admin-users' ),
 		'table'         => array( 'title' => __( 'Table', 'velstadt' ), 'icon' => 'editor-table' ),
 		'media'         => array( 'title' => __( 'Image / Gallery', 'velstadt' ), 'icon' => 'format-gallery' ),
 		'code'          => array( 'title' => __( 'Code', 'velstadt' ), 'icon' => 'editor-code' ),

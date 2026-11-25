@@ -191,9 +191,19 @@ add_filter( 'posts_search', 'velstadt_blog_posts_search', 10, 2 );
  * @param int    $post_id Post ID.
  * @param string $class   CSS class.
  * @param string $size    WordPress image size.
+ * @param string $context Image placement: card or featured.
  * @return void
  */
-function velstadt_blog_post_image( $post_id, $class = '', $size = 'large' ) {
+function velstadt_blog_post_image( $post_id, $class = '', $size = 'large', $context = 'card' ) {
+	if ( 'featured' === $context && function_exists( 'get_field' ) ) {
+		$image_id = (int) get_field( 'post_featured_image', $post_id );
+		$image = $image_id ? wp_get_attachment_image( $image_id, $size, false, array( 'class' => $class, 'alt' => get_the_title( $post_id ) ) ) : '';
+		if ( $image ) {
+			echo $image; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			return;
+		}
+	}
+
 	if ( has_post_thumbnail( $post_id ) ) {
 		echo get_the_post_thumbnail( $post_id, $size, array( 'class' => $class, 'alt' => get_the_title( $post_id ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		return;

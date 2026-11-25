@@ -1,0 +1,33 @@
+{
+    "key": "group_velstadt_post_images",
+    "title": "Post Images",
+    "fields": [
+        {
+            "key": "field_velstadt_post_hero_image",
+            "name": "post_hero_image",
+            "label": "Post header image",
+            "type": "image",
+            "instructions": "Image displayed at the top of this article. Select a version composed for the article header. If empty, the Featured Image is used.",
+            "required": 0,
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_velstadt_post_featured_image",
+            "name": "post_featured_image",
+            "label": "Blog featured card image",
+            "type": "image",
+            "instructions": "Image used when this article is the large featured card on the Blog page. Regular article cards continue to use the Featured Image. If empty, the Featured Image is used.",
+            "required": 0,
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all"
+        }
+    ],
+    "location": [[{"param": "post_type", "operator": "==", "value": "post"}]],
+    "menu_order": 2,
+    "position": "normal",
+    "style": "default",
+    "active": true
+}
